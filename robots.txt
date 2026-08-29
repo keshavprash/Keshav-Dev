@@ -1,0 +1,7 @@
+# robots.txt — https://keshavprash.github.io/Keshav-Dev/
+# Portfolio of Keshav Prashar — React.js & MERN Full Stack Developer, Jaipur, India
+
+User-agent: *
+Allow: /
+
+Sitemap: https://keshavprash.github.io/Keshav-Dev/sitemap.xml
