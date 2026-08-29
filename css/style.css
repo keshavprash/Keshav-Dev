@@ -458,7 +458,8 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 	line-height: 1.3;
 }
 .hero-role .sep { color: var(--text-dim); margin-inline: 8px; font-weight: 400; }
-.hero-role .rotate { color: var(--accent-text); }
+/* keep the rotating phrase atomic so it never breaks mid-word as it types */
+.hero-role .rotate { color: var(--accent-text); white-space: nowrap; }
 .hero-role .caret {
 	display: inline-block;
 	width: 2px; height: 1em;
