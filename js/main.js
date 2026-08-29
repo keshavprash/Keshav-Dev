@@ -183,27 +183,38 @@
 		var status = $('#form-status');
 		var EMAIL = form.getAttribute('data-email') || '';
 
-		form.addEventListener('submit', function (e) {
-			e.preventDefault();
+		// One reading of the form, shared by the email and WhatsApp routes, so the
+		// visitor never loses what they typed by choosing the other channel.
+		var readBrief = function () {
 			var data = new FormData(form);
 			var get = function (k) { return String(data.get(k) || '').trim(); };
+			return {
+				name: get('name'), email: get('email'), phone: get('phone'),
+				type: get('projectType'), budget: get('budget'),
+				timeline: get('timeline'), message: get('message')
+			};
+		};
 
-			var name = get('name');
-			var email = get('email');
-			var type = get('projectType');
-			var budget = get('budget');
-			var message = get('message');
-
-			var subject = 'Project enquiry' + (type ? ' — ' + type : '') + (name ? ' (' + name + ')' : '');
-			var lines = [
-				'Name: ' + name,
-				'Email: ' + email,
-				'Project type: ' + (type || 'Not specified'),
-				'Budget range: ' + (budget || 'Not specified'),
+		var briefLines = function (b) {
+			return [
+				'Name: ' + b.name,
+				'Email: ' + b.email,
+				'Phone / WhatsApp: ' + (b.phone || 'Not provided'),
+				'Project type: ' + (b.type || 'Not specified'),
+				'Budget range: ' + (b.budget || 'Not specified'),
+				'Timeline: ' + (b.timeline || 'Not specified'),
 				'',
 				'Project details:',
-				message
+				b.message
 			];
+		};
+
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var brief = readBrief();
+			var subject = 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '');
+			var lines = briefLines(brief);
 
 			var href = 'mailto:' + EMAIL +
 				'?subject=' + encodeURIComponent(subject) +
@@ -216,6 +227,20 @@
 				status.classList.add('is-visible');
 			}
 		});
+
+		// The WhatsApp button beside Submit: if anything has been filled in, send that
+		// brief along instead of the generic greeting. Falls back to the static href.
+		var waBtn = form.querySelector('a.btn--wa');
+		if (waBtn) {
+			var waBase = waBtn.getAttribute('href').split('?')[0];
+			waBtn.addEventListener('click', function () {
+				var b = readBrief();
+				if (!b.name && !b.message && !b.type) return;   // nothing typed — keep the default text
+				var intro = 'Hi Keshav, I would like to discuss a project.';
+				var text = intro + '\n\n' + briefLines(b).join('\n');
+				waBtn.setAttribute('href', waBase + '?text=' + encodeURIComponent(text));
+			});
+		}
 
 		// Prefill the project type when a service card CTA is used.
 		$$('[data-service]').forEach(function (link) {

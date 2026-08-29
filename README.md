@@ -16,8 +16,10 @@ Built as a hand-written static site — no frameworks, no build step, no depende
 - Project case studies — the goal, key features, technical implementation and what each demonstrates
 - Project galleries — 17 interface screens with thumbnails, prev/next, keyboard and touch navigation
 - Freelance services with starting prices and per-service enquiry CTAs
-- Contact inquiry form (name, email, project type, budget, message)
-- SEO metadata — canonical URL, Open Graph, Twitter cards and JSON-LD `Person` schema
+- Contact inquiry form (name, email, project type, budget, timeline, phone, message)
+- SEO metadata — canonical URL, Open Graph, Twitter cards and a JSON-LD `@graph`
+  (`WebSite`, `ProfilePage`, `ImageObject`, `Person`, four `Service` nodes, an `ItemList`
+  of the projects and a `SoftwareSourceCode` node per project)
 - Accessibility — skip link, focus management, visible focus rings, reduced-motion support
 - GitHub Pages deployment via GitHub Actions
 
@@ -47,7 +49,7 @@ Keshav-Dev/
 ├── js/
 │   └── main.js                # Theme, nav, scroll-spy, reveals, counters, project modal, contact form
 ├── images/
-│   ├── kp.png                 # Logo / favicon
+│   ├── kp.jpg                 # Logo / favicon (JPEG bytes, correctly named)
 │   ├── keshav-portrait.webp   # Hero portrait (+ .jpg fallback)
 │   ├── keshav-about.webp      # About photo (+ .jpg fallback)
 │   ├── og-cover.jpg           # Social share card (1200×630, baseline JPEG)
@@ -68,7 +70,7 @@ Keshav-Dev/
 Navbar → Hero → Trust stats → Services ("What I can build for you", with pricing) →
 Featured projects (image-led cards + case-study modal) → Why work with me →
 Tech stack → Experience, education & certifications → About → How I work → Freelance CTA →
-Contact → Footer.
+FAQ → Contact → Footer.
 
 Each project has **17 interface screens** between them, so a visitor can open any project and
 step through what it actually does rather than reading a feature list.
@@ -189,6 +191,7 @@ Everything is in `index.html`, in the order it appears on the page. The most com
 | About copy | `<section id="about">` |
 | Process steps | `<section id="process">` |
 | Contact details & form | `<section id="contact">` |
+| FAQ answers | `<section id="faq">` |
 | CV link | the **Download CV** button in the About section |
 
 Colours, spacing, radii and fonts are all CSS custom properties at the top of
@@ -230,8 +233,10 @@ All of its content is written with `textContent` / `createElement`, so nothing i
 ## The contact form
 
 The form has no backend. On submit it builds a pre-filled `mailto:` message
-(name, email, project type, budget, details) and opens the visitor's mail app. The
-WhatsApp button next to it is usually the faster route for clients.
+(name, email, phone, project type, budget, timeline, details) and opens the visitor's mail app.
+The WhatsApp button next to it sends the **same** brief — `readBrief()` and `briefLines()` in
+`js/main.js` are shared by both routes, so switching channel never loses what was typed. With an
+untouched form the WhatsApp button keeps its plain greeting.
 
 To switch to a hosted form service instead (so submissions arrive without the visitor
 having a mail client set up):
