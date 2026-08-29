@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0b0d11">
+
+	<title>Keshav Prashar | React.js &amp; MERN Full Stack Developer</title>
+	<meta name="description" content="React.js and MERN Stack Developer building modern websites, scalable web applications and AI-powered solutions. Available for freelance projects from Jaipur, India.">
+	<meta name="author" content="Keshav Prashar">
+	<meta name="keywords" content="React.js developer, MERN stack developer, freelance web developer Jaipur, full stack developer India, custom web application developer, admin dashboard developer">
+	<link rel="canonical" href="https://keshavprash.github.io/Keshav-Dev/">
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Keshav Prashar">
+	<meta property="og:title" content="Keshav Prashar | React.js &amp; MERN Full Stack Developer">
+	<meta property="og:description" content="I build modern websites, scalable web applications and AI-powered solutions for businesses and startups.">
+	<meta property="og:image" content="https://keshavprash.github.io/Keshav-Dev/images/og-cover.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:image:alt" content="Keshav Prashar — Full Stack Developer, React.js &amp; MERN. Modern websites, web applications and AI solutions.">
+	<meta property="og:url" content="https://keshavprash.github.io/Keshav-Dev/">
+	<meta property="og:locale" content="en_IN">
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Keshav Prashar | React.js &amp; MERN Full Stack Developer">
+	<meta name="twitter:description" content="I build modern websites, scalable web applications and AI-powered solutions for businesses and startups.">
+	<meta name="twitter:image" content="https://keshavprash.github.io/Keshav-Dev/images/og-cover.jpg">
+	<meta name="twitter:image:alt" content="Keshav Prashar — Full Stack Developer, React.js &amp; MERN. Modern websites, web applications and AI solutions.">
+
+	<link rel="icon" href="images/kp.png">
+	<link rel="apple-touch-icon" href="images/kp.png">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" as="image" type="image/webp" href="images/keshav-portrait.webp">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+
+	<script>
+		// Restore the visitor's saved theme before first paint.
+		(function () {
+			try {
+				var saved = localStorage.getItem('kp-theme');
+				if (saved === 'light' || saved === 'dark') {
+					document.documentElement.setAttribute('data-theme', saved);
+				} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+					document.documentElement.setAttribute('data-theme', 'light');
+				}
+			} catch (e) { /* keep the default dark theme */ }
+		})();
+	</script>
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "Person",
+		"name": "Keshav Prashar",
+		"jobTitle": "React.js Developer | MERN Stack Developer",
+		"email": "mailto:keshavprashar597@gmail.com",
+		"telephone": "+91-7633853037",
+		"url": "https://keshavprash.github.io/Keshav-Dev/",
+		"image": "https://keshavprash.github.io/Keshav-Dev/images/keshav-portrait.jpg",
+		"address": { "@type": "PostalAddress", "addressLocality": "Jaipur", "addressRegion": "Rajasthan", "addressCountry": "IN" },
+		"alumniOf": { "@type": "CollegeOrUniversity", "name": "Poornima Institute of Engineering and Technology, Jaipur" },
+		"knowsAbout": ["React.js", "MERN Stack", "Node.js", "Express.js", "MongoDB", "REST APIs", "Redux Toolkit", "JWT Authentication", "Socket.IO"],
+		"sameAs": [
+			"https://github.com/keshavprash",
+			"https://www.linkedin.com/in/keshav-prashar-9277b2256"
+		]
+	}
+	</script>
+</head>
+
+<body>
+	<a class="skip-link" href="#main">Skip to main content</a>
+
+	<!-- ============================================================ HEADER -->
+	<header class="site-header">
+		<div class="container">
+			<nav class="nav" aria-label="Primary">
+				<a class="brand" href="#top">
+					<img src="images/kp.png" alt="" width="32" height="32">
+					<span>Keshav Prashar</span>
+				</a>
+
+				<ul class="nav-links">
+					<li><a href="#services">Services</a></li>
+					<li><a href="#work">Work</a></li>
+					<li><a href="#why">Why me</a></li>
+					<li><a href="#skills">Skills</a></li>
+					<li><a href="#experience">Experience</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#process">Process</a></li>
+				</ul>
+
+				<div class="nav-actions">
+					<button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+						<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+						<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+					</button>
+
+					<a class="btn btn--primary btn--sm btn--hire" href="#contact">Hire Me</a>
+
+					<button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+					</button>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<div class="mobile-menu" id="mobile-menu">
+		<a href="#services">Services</a>
+		<a href="#work">Work</a>
+		<a href="#why">Why me</a>
+		<a href="#skills">Skills</a>
+		<a href="#experience">Experience</a>
+		<a href="#about">About</a>
+		<a href="#process">Process</a>
+		<a href="#contact">Contact</a>
+		<a class="btn btn--primary" href="#contact">Get a Project Estimate</a>
+	</div>
+
+	<main id="main" tabindex="-1">
+		<!-- ========================================================== HERO -->
+		<section class="hero" id="top">
+			<div class="container">
+				<div class="hero-grid">
+					<div class="hero-copy" data-reveal>
+						<p class="availability"><span class="dot" aria-hidden="true"></span> Available for freelance projects</p>
+
+						<h1>Keshav Prashar</h1>
+
+						<p class="hero-role">
+							Full Stack Developer <span class="sep">/</span>
+							<span class="rotate" data-rotate='["React.js &amp; MERN","AI-Powered Web Apps","Admin Dashboards","REST APIs"]'>React.js &amp; MERN</span><span class="caret" aria-hidden="true"></span>
+						</p>
+
+						<p class="hero-lead">
+							I build modern websites, scalable web applications and AI-powered solutions for
+							businesses and startups — from the interface right through to the API and database.
+						</p>
+
+						<div class="hero-cta">
+							<a class="btn btn--primary" href="#work">
+								View My Work
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</a>
+							<a class="btn btn--ghost" href="#contact">Hire Me</a>
+						</div>
+
+						<ul class="hero-meta">
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.8"/></svg>
+								Jaipur, India
+							</li>
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg>
+								1+ year production experience
+							</li>
+							<li>
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.8 3.8 9S14.5 21.3 12 21c-2.5-.3-3.8-5.8-3.8-9S9.5 5.7 12 3z"/></svg>
+								Open to remote work
+							</li>
+						</ul>
+					</div>
+
+					<div class="hero-visual" data-reveal data-reveal-delay="120">
+						<figure class="portrait-frame" style="margin:0">
+							<picture>
+								<source srcset="images/keshav-portrait.webp" type="image/webp">
+								<img src="images/keshav-portrait.jpg" width="760" height="760"
+									alt="Portrait of Keshav Prashar, React.js and MERN stack developer" fetchpriority="high" decoding="async">
+							</picture>
+						</figure>
+						<div class="floating-badge">
+							<span class="fb-num">5+</span>
+							<span class="fb-txt">production React apps built &amp; shipped</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ========================================================= STATS -->
+		<section class="section section--tight" aria-label="Experience at a glance">
+			<div class="container">
+				<ul class="stats-strip" data-reveal>
+					<li class="stat">
+						<span class="num"><span data-count="1">1</span><span class="unit">+</span></span>
+						<span class="label">Year of production experience</span>
+					</li>
+					<li class="stat">
+						<span class="num"><span data-count="5">5</span><span class="unit">+</span></span>
+						<span class="label">React apps built &amp; shipped</span>
+					</li>
+					<li class="stat">
+						<span class="num"><span data-count="10">10</span><span class="unit">+</span></span>
+						<span class="label">Reusable components designed</span>
+					</li>
+					<li class="stat">
+						<span class="num">~<span data-count="20">20</span><span class="unit">%</span></span>
+						<span class="label">Faster page loads delivered</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ====================================================== SERVICES -->
+		<section class="section section--alt" id="services">
+			<div class="container">
+				<div class="section-head section-head--center" data-reveal>
+					<p class="eyebrow">Services</p>
+					<h2>What I can build for you</h2>
+					<p>Whether you need a website that wins trust or a web application that runs your business,
+						I handle the design, the code and the deployment.</p>
+				</div>
+
+				<div class="grid grid--4">
+					<article class="card service-card" data-reveal>
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="15" rx="2"/><path d="M2.5 8.5h19M6 6.2h.01M8.6 6.2h.01"/></svg>
+						</span>
+						<h3>Business Websites</h3>
+						<p>Modern, responsive websites for businesses, startups and professionals — fast, mobile-first
+							and built to make visitors get in touch.</p>
+						<ul class="tags">
+							<li class="tag">React.js</li>
+							<li class="tag">Tailwind CSS</li>
+							<li class="tag">Responsive</li>
+							<li class="tag">SEO basics</li>
+						</ul>
+						<div class="service-foot">
+							<p class="price"><span class="from">Starting from</span><span class="amount">₹7,000</span></p>
+							<a class="link-arrow" href="#contact" data-service="Business Website">Get an estimate
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</a>
+						</div>
+					</article>
+
+					<article class="card service-card" data-reveal data-reveal-delay="80">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"/></svg>
+						</span>
+						<h3>Custom Web Applications</h3>
+						<p>Scalable React and MERN applications with REST APIs, secure authentication, role-based
+							access and data-driven dashboards.</p>
+						<ul class="tags">
+							<li class="tag">MERN</li>
+							<li class="tag">Redux Toolkit</li>
+							<li class="tag">JWT Auth</li>
+							<li class="tag">REST APIs</li>
+						</ul>
+						<div class="service-foot">
+							<p class="price"><span class="from">Starting from</span><span class="amount">₹20,000</span></p>
+							<a class="link-arrow" href="#contact" data-service="Custom Web Application">Get an estimate
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</a>
+						</div>
+					</article>
+
+					<article class="card service-card" data-reveal data-reveal-delay="160">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 4.4 4.6.5-3.4 3.1 1 4.5L12 13.2 7.9 15.5l1-4.5L5.5 7.9l4.6-.5L12 3z"/><path d="M18.5 16.5l.7 1.6 1.8.2-1.4 1.2.4 1.7-1.5-.9-1.5.9.4-1.7-1.3-1.2 1.7-.2.7-1.6z"/></svg>
+						</span>
+						<h3>AI-Powered Applications</h3>
+						<p>Web apps with AI APIs behind them — automated analysis, generated feedback and scoring
+							built into a workflow your users actually follow.</p>
+						<ul class="tags">
+							<li class="tag">AI APIs</li>
+							<li class="tag">Node.js</li>
+							<li class="tag">Socket.IO</li>
+							<li class="tag">MongoDB</li>
+						</ul>
+						<div class="service-foot">
+							<p class="price"><span class="from">Starting from</span><span class="amount">₹15,000</span></p>
+							<a class="link-arrow" href="#contact" data-service="AI-Powered Application">Get an estimate
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</a>
+						</div>
+					</article>
+
+					<article class="card service-card" data-reveal data-reveal-delay="240">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="8.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="5" rx="1.6"/><rect x="3" y="14.5" width="7.5" height="6.5" rx="1.6"/><rect x="13.5" y="11" width="7.5" height="10" rx="1.6"/></svg>
+						</span>
+						<h3>Admin Dashboards</h3>
+						<p>Custom dashboards to manage users, content, orders and operations — with protected routes,
+							clear tables and charts that answer real questions.</p>
+						<ul class="tags">
+							<li class="tag">React</li>
+							<li class="tag">Material UI</li>
+							<li class="tag">Protected Routes</li>
+							<li class="tag">Charts</li>
+						</ul>
+						<div class="service-foot">
+							<p class="price"><span class="from">Starting from</span><span class="amount">₹12,000</span></p>
+							<a class="link-arrow" href="#contact" data-service="Admin Dashboard">Get an estimate
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+							</a>
+						</div>
+					</article>
+				</div>
+
+				<div class="section-cta" data-reveal>
+					<a class="btn btn--primary" href="#contact">Discuss Your Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+					<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>WhatsApp Me</a>
+				</div>
+
+				<p class="pricing-note" data-reveal>
+					Also available for <strong>website improvements</strong> — performance optimisation, responsive
+					fixes, UI clean-ups and new features on an existing site. Prices above are starting points; the
+					final quote depends on scope, so <a href="#contact">tell me what you need</a> and I'll send a
+					clear estimate.
+				</p>
+			</div>
+		</section>
+
+		<!-- ====================================================== PROJECTS -->
+		<section class="section" id="work">
+			<div class="container">
+				<div class="section-head" data-reveal>
+					<p class="eyebrow">Featured Projects</p>
+					<h2>Selected work</h2>
+					<p>Full-stack applications I designed, built and shipped. Every feature listed below is
+						implemented in the linked source code.</p>
+				</div>
+
+				<div class="projects">
+					<!-- Project 1 — flagship -->
+					<article class="project project--split" data-reveal>
+						<button class="project-media" type="button" data-open-project="ai-interview"
+							aria-label="Open the AI Interview Preparation Platform gallery">
+							<picture>
+								<source srcset="images/projects/ai-interview/dashboard.webp" type="image/webp">
+								<img src="images/projects/ai-interview/dashboard.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+									alt="Interface preview of the AI Interview Preparation Platform dashboard: overall preparation score, ATS resume score, mock interview and coding assessment progress, a performance trend chart and a list of recent mock interviews.">
+							</picture>
+							<span class="media-tag">UI preview</span>
+							<span class="media-hint">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l4.5-4 3.5 3 4-5 6 6"/></svg>
+								7 screens
+							</span>
+						</button>
+
+						<div class="project-body">
+							<span class="project-kicker">Flagship project · Full stack</span>
+							<h3>AI Interview Preparation Platform</h3>
+							<p class="project-summary">
+								A MERN platform that scores a resume against ATS criteria, runs AI mock interviews,
+								sets coding challenges and reports back on performance — with an admin side that
+								manages the whole question bank.
+							</p>
+
+							<ul class="project-points">
+								<li>Resume upload with PDF parsing and ATS-style analysis.</li>
+								<li>AI mock interviews: question flow, answer submission, feedback and scored reports.</li>
+								<li>Coding assessments wired to a code-execution service, with an offline fallback.</li>
+								<li>Admin dashboard for categories, exams, roles, companies and question banks.</li>
+							</ul>
+
+							<ul class="tags">
+								<li class="tag tag--accent">MERN</li>
+								<li class="tag">React 19</li>
+								<li class="tag">Redux Toolkit</li>
+								<li class="tag">Tailwind CSS</li>
+								<li class="tag">Node.js</li>
+								<li class="tag">Express</li>
+								<li class="tag">MongoDB</li>
+								<li class="tag">JWT</li>
+								<li class="tag">Socket.IO</li>
+								<li class="tag">AI APIs</li>
+							</ul>
+
+							<div class="project-foot">
+								<button class="btn btn--primary btn--sm" type="button" data-open-project="ai-interview">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+									View Project
+								</button>
+								<a class="btn btn--solid btn--sm" href="https://github.com/keshavprash/AI-Interview-Preparation-Platform" target="_blank" rel="noopener">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+									View Source
+								</a>
+							</div>
+						</div>
+					</article>
+
+					<div class="grid grid--2">
+						<!-- Project 2 -->
+						<article class="project" data-reveal>
+							<button class="project-media" type="button" data-open-project="employee-task"
+								aria-label="Open the Employee Task Management System gallery">
+								<picture>
+									<source srcset="images/projects/employee-task/dashboard.webp" type="image/webp">
+									<img src="images/projects/employee-task/dashboard.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+										alt="Interface preview of the Employee Task Management admin dashboard: total employees, active, completed and pending task counts, a task throughput chart, a task status breakdown and a recent task table.">
+								</picture>
+								<span class="media-tag">UI preview</span>
+								<span class="media-hint">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l4.5-4 3.5 3 4-5 6 6"/></svg>
+									5 screens
+								</span>
+							</button>
+							<div class="project-body">
+								<span class="project-kicker">Full stack · Role-based</span>
+								<h3>Employee Task Management System</h3>
+								<p class="project-summary">
+									An internal tool for assigning work and tracking it to completion: admins manage
+									employees and tasks, employees update status and log work notes, and a dashboard
+									shows where everything stands.
+								</p>
+								<ul class="project-points">
+									<li>JWT login with BCrypt password storage and role-based access.</li>
+									<li>Admin CRUD for employees and tasks, work logs and dashboard metrics.</li>
+									<li>Paginated, sortable, searchable APIs with validation and global error handling.</li>
+								</ul>
+								<ul class="tags">
+									<li class="tag tag--accent">Spring Boot 3</li>
+									<li class="tag">Java 21</li>
+									<li class="tag">PostgreSQL</li>
+									<li class="tag">React 18</li>
+									<li class="tag">Material UI</li>
+									<li class="tag">JWT</li>
+									<li class="tag">Swagger</li>
+								</ul>
+								<div class="project-foot">
+									<button class="btn btn--primary btn--sm" type="button" data-open-project="employee-task">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+										View Project
+									</button>
+									<a class="btn btn--solid btn--sm" href="https://github.com/keshavprash/employee-task-management" target="_blank" rel="noopener">
+										<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+										View Source
+									</a>
+								</div>
+							</div>
+						</article>
+
+						<!-- Project 3 -->
+						<article class="project" data-reveal data-reveal-delay="90">
+							<button class="project-media" type="button" data-open-project="space-shooter"
+								aria-label="Open the Space Shooter gallery">
+								<picture>
+									<source srcset="images/projects/space-shooter/game.webp" type="image/webp">
+									<img src="images/projects/space-shooter/game.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+										alt="Interface preview of the Space Shooter browser game: a starfield play area with the player ship, enemy waves, projectiles and explosions, a score and wave HUD, shield and lives readouts and a live leaderboard panel.">
+								</picture>
+								<span class="media-tag">UI preview</span>
+								<span class="media-hint">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l4.5-4 3.5 3 4-5 6 6"/></svg>
+									3 screens
+								</span>
+							</button>
+							<div class="project-body">
+								<span class="project-kicker">MERN · Canvas game</span>
+								<h3>Space Shooter — MERN Platform</h3>
+								<p class="project-summary">
+									A browser game built on a real application stack: a React canvas front end talking to
+									an Express API that stores scores and rankings in MongoDB.
+								</p>
+								<ul class="project-points">
+									<li>Canvas gameplay in React with Vite — components, hooks and utilities.</li>
+									<li>Express and MongoDB back end serving the leaderboard routes.</li>
+									<li>Environment-driven config and a production build path.</li>
+								</ul>
+								<ul class="tags">
+									<li class="tag tag--accent">MERN</li>
+									<li class="tag">React</li>
+									<li class="tag">Vite</li>
+									<li class="tag">Node.js</li>
+									<li class="tag">Express</li>
+									<li class="tag">MongoDB</li>
+								</ul>
+								<div class="project-foot">
+									<button class="btn btn--primary btn--sm" type="button" data-open-project="space-shooter">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+										View Project
+									</button>
+									<a class="btn btn--solid btn--sm" href="https://github.com/keshavprash/space-shooter-mern" target="_blank" rel="noopener">
+										<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+										View Source
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+
+					<!-- Project 4 -->
+					<article class="project project--split project--mirror" data-reveal>
+						<button class="project-media" type="button" data-open-project="portfolio"
+							aria-label="Open the portfolio gallery">
+							<picture>
+								<source srcset="images/projects/portfolio/portfolio-preview.webp" type="image/webp">
+								<img src="images/projects/portfolio/portfolio-preview.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+									alt="Screenshot of this portfolio: the hero section with the availability badge, name, role, introduction, View My Work and Hire Me buttons, and the stats strip below.">
+							</picture>
+							<span class="media-tag media-tag--live">Screenshot</span>
+							<span class="media-hint">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 14l4.5-4 3.5 3 4-5 6 6"/></svg>
+								2 screens
+							</span>
+						</button>
+						<div class="project-body">
+							<span class="project-kicker">Front end · Performance</span>
+							<h3>This Portfolio</h3>
+							<p class="project-summary">
+								The site you're reading. Built as a hand-written, dependency-free static site so it
+								loads fast on a phone on mobile data — no jQuery, no UI framework, no page bloat.
+							</p>
+							<ul class="project-points">
+								<li>Semantic HTML, one hand-written stylesheet and a single small vanilla JS file.</li>
+								<li>Light and dark themes that respect the visitor's system preference.</li>
+								<li>WebP images, lazy loading, IntersectionObserver reveals and Open Graph metadata.</li>
+								<li>Deployed automatically to GitHub Pages via GitHub Actions.</li>
+							</ul>
+							<ul class="tags">
+								<li class="tag tag--accent">HTML5</li>
+								<li class="tag">CSS3</li>
+								<li class="tag">Vanilla JS</li>
+								<li class="tag">Accessibility</li>
+								<li class="tag">GitHub Actions</li>
+							</ul>
+							<div class="project-foot">
+								<button class="btn btn--primary btn--sm" type="button" data-open-project="portfolio">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+									View Project
+								</button>
+								<a class="btn btn--solid btn--sm" href="https://github.com/keshavprash/Keshav-Dev" target="_blank" rel="noopener">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+									View Source
+								</a>
+							</div>
+						</div>
+					</article>
+				</div>
+
+				<p class="media-note" data-reveal>
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6h.01"/></svg>
+					<span>Images marked <strong>UI preview</strong> are interface mockups I built from each project's
+						real feature set and source code — they are not screenshots of a hosted deployment. The
+						portfolio images are actual screenshots of this site.</span>
+				</p>
+			</div>
+		</section>
+
+		<!-- ======================================================= WHY ME -->
+		<section class="section section--alt" id="why">
+			<div class="container">
+				<div class="section-head section-head--center" data-reveal>
+					<p class="eyebrow">Why work with me</p>
+					<h2>What you actually get</h2>
+					<p>Production experience, not coursework. Every point below comes from work I have shipped.</p>
+				</div>
+
+				<div class="grid grid--4">
+					<article class="card why-card" data-reveal>
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17.5L9 12l3.5 3.5L20.5 7"/><path d="M16 7h4.5v4.5"/></svg>
+						</span>
+						<h3>Production experience</h3>
+						<p>5+ production React applications built and shipped for real users — with client
+							communication, code reviews and sprint planning around them, not just the code.</p>
+					</article>
+
+					<article class="card why-card" data-reveal data-reveal-delay="80">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"/><path d="M17.25 13.5v7.5M13.5 17.25h7.5"/></svg>
+						</span>
+						<h3>Reusable architecture</h3>
+						<p>10+ reusable, config-driven React components designed as a library — which cut new
+							feature development time by roughly 30% on the projects that used them.</p>
+					</article>
+
+					<article class="card why-card" data-reveal data-reveal-delay="160">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5L4.5 13.5H11l-1 8 8.5-11H12l1-7.5z"/></svg>
+						</span>
+						<h3>Performance focus</h3>
+						<p>Page load times cut by about 20% using code splitting, lazy loading and asset optimisation
+							— the difference between a visitor waiting and a visitor leaving.</p>
+					</article>
+
+					<article class="card why-card" data-reveal data-reveal-delay="240">
+						<span class="card-icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"/><path d="M13.5 4.5l-3 15"/></svg>
+						</span>
+						<h3>End-to-end development</h3>
+						<p>Frontend, backend, REST APIs, authentication, real-time features and deployment — one
+							person who can take a project from idea to live site without hand-offs.</p>
+					</article>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================================================== SKILLS -->
+		<section class="section section--alt" id="skills">
+			<div class="container">
+				<div class="section-head section-head--center" data-reveal>
+					<p class="eyebrow">Tech Stack</p>
+					<h2>Tools I work with every day</h2>
+					<p>The stack behind the projects above — chosen for what a project needs, not for novelty.</p>
+				</div>
+
+				<ul class="stack-row" data-reveal>
+					<li class="stack-chip"><img src="images/skills/react.png" alt="" width="22" height="22" loading="lazy" decoding="async"> React.js</li>
+					<li class="stack-chip"><img src="images/skills/javascript.png" alt="" width="22" height="22" loading="lazy" decoding="async"> JavaScript</li>
+					<li class="stack-chip"><img src="images/skills/node.png" alt="" width="22" height="22" loading="lazy" decoding="async"> Node.js</li>
+					<li class="stack-chip"><img src="images/skills/mongo.png" alt="" width="22" height="22" loading="lazy" decoding="async"> MongoDB</li>
+					<li class="stack-chip"><img src="images/skills/html.png" alt="" width="22" height="22" loading="lazy" decoding="async"> HTML5</li>
+					<li class="stack-chip"><img src="images/skills/css.png" alt="" width="22" height="22" loading="lazy" decoding="async"> CSS3</li>
+					<li class="stack-chip"><img src="images/skills/bootstrap.png" alt="" width="22" height="22" loading="lazy" decoding="async"> Bootstrap</li>
+					<li class="stack-chip"><img src="images/skills/java.png" alt="" width="22" height="22" loading="lazy" decoding="async"> Java</li>
+					<li class="stack-chip"><img src="images/skills/linux.png" alt="" width="22" height="22" loading="lazy" decoding="async"> Linux</li>
+				</ul>
+
+				<div class="grid grid--3">
+					<div class="card skill-group" data-reveal>
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8"/></svg>
+							Frontend
+						</h3>
+						<ul class="tags">
+							<li class="tag">React.js</li>
+							<li class="tag">JavaScript ES6+</li>
+							<li class="tag">React Router</li>
+							<li class="tag">Redux Toolkit</li>
+							<li class="tag">Tailwind CSS</li>
+							<li class="tag">Material UI</li>
+							<li class="tag">Bootstrap</li>
+							<li class="tag">Responsive Design</li>
+							<li class="tag">Component Architecture</li>
+						</ul>
+					</div>
+
+					<div class="card skill-group" data-reveal data-reveal-delay="70">
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+							Backend &amp; APIs
+						</h3>
+						<ul class="tags">
+							<li class="tag">Node.js</li>
+							<li class="tag">Express.js</li>
+							<li class="tag">REST APIs</li>
+							<li class="tag">Axios</li>
+							<li class="tag">JWT Authentication</li>
+							<li class="tag">Protected Routes</li>
+							<li class="tag">Socket.IO</li>
+							<li class="tag">AI APIs</li>
+							<li class="tag">Error Handling</li>
+						</ul>
+					</div>
+
+					<div class="card skill-group" data-reveal data-reveal-delay="140">
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="8" ry="3.2"/><path d="M4 6v12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2V6"/><path d="M4 12c0 1.8 3.6 3.2 8 3.2s8-1.4 8-3.2"/></svg>
+							Database
+						</h3>
+						<ul class="tags">
+							<li class="tag">MongoDB</li>
+							<li class="tag">Mongoose</li>
+							<li class="tag">MySQL</li>
+							<li class="tag">PostgreSQL</li>
+							<li class="tag">Schema Design</li>
+						</ul>
+					</div>
+
+					<div class="card skill-group" data-reveal>
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><path d="M12 3l7.5 3.4v5.1c0 4.4-3.1 8.4-7.5 9.5-4.4-1.1-7.5-5.1-7.5-9.5V6.4L12 3z"/></svg>
+							Testing &amp; Quality
+						</h3>
+						<ul class="tags">
+							<li class="tag">Jest</li>
+							<li class="tag">React Testing Library</li>
+							<li class="tag">Postman</li>
+							<li class="tag">Code Reviews</li>
+							<li class="tag">Performance Optimization</li>
+						</ul>
+					</div>
+
+					<div class="card skill-group" data-reveal data-reveal-delay="70">
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v6M12 15v6M4.9 7.5l5.2 3M13.9 13.5l5.2 3M19.1 7.5l-5.2 3M10.1 13.5l-5.2 3"/><circle cx="12" cy="12" r="3"/></svg>
+							DevOps &amp; Deployment
+						</h3>
+						<ul class="tags">
+							<li class="tag">Git</li>
+							<li class="tag">GitHub</li>
+							<li class="tag">GitHub Actions</li>
+							<li class="tag">CI/CD</li>
+							<li class="tag">Vercel</li>
+							<li class="tag">Netlify</li>
+							<li class="tag">Render</li>
+						</ul>
+					</div>
+
+					<div class="card skill-group" data-reveal data-reveal-delay="140">
+						<h3>
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3.2A2.6 2.6 0 0 1 19.5 5v14A2.6 2.6 0 0 1 16 20.8"/><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/></svg>
+							Ways of Working
+						</h3>
+						<ul class="tags">
+							<li class="tag">Agile / Scrum</li>
+							<li class="tag">Sprint Planning</li>
+							<li class="tag">Client Communication</li>
+							<li class="tag">Code Splitting</li>
+							<li class="tag">Lazy Loading</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ==================================================== EXPERIENCE -->
+		<section class="section" id="experience">
+			<div class="container">
+				<div class="section-head" data-reveal>
+					<p class="eyebrow">Experience</p>
+					<h2>Where I've worked</h2>
+					<p>Production experience shipping React applications for real users and real clients.</p>
+				</div>
+
+				<div class="grid grid--2" style="gap:34px; align-items:start">
+					<div class="timeline">
+						<article class="tl-item tl-item--current" data-reveal>
+							<span class="tl-dot" aria-hidden="true"></span>
+							<div class="tl-card">
+								<div class="tl-head">
+									<h3>Web Developer</h3>
+									<span class="tl-date">Jul 2025 – Jun 2026</span>
+								</div>
+								<span class="tl-company">Assistech Pvt. Ltd. (Assist Tech Consultancy) <span class="place">· Jaipur</span></span>
+								<ul class="tl-list">
+									<li>Built and shipped 5+ production React.js applications.</li>
+									<li>Cut page load times by roughly 20% using code splitting, lazy loading and asset optimisation.</li>
+									<li>Designed a library of 10+ reusable, config-driven React components, reducing new feature development time by about 30%.</li>
+									<li>Integrated REST APIs and third-party services with Axios, and built data-driven dashboards.</li>
+									<li>Implemented JWT-based authentication, protected routes and React Router navigation.</li>
+									<li>Wrote unit tests and worked with CI/CD pipelines.</li>
+									<li>Collaborated directly with clients and stakeholders; took part in code reviews, sprint planning and debugging within Agile/Scrum workflows.</li>
+								</ul>
+								<ul class="tags">
+									<li class="tag tag--accent">React.js</li>
+									<li class="tag">Redux Toolkit</li>
+									<li class="tag">REST APIs</li>
+									<li class="tag">JWT</li>
+									<li class="tag">CI/CD</li>
+								</ul>
+							</div>
+						</article>
+
+						<article class="tl-item" data-reveal>
+							<span class="tl-dot" aria-hidden="true"></span>
+							<div class="tl-card">
+								<div class="tl-head">
+									<h3>Web Development Intern</h3>
+									<span class="tl-date">Jun 2024 – Jul 2024</span>
+								</div>
+								<span class="tl-company">Academor by Technest</span>
+								<ul class="tl-list">
+									<li>Completed a 45-day full-stack development program.</li>
+									<li>Worked with React fundamentals, JavaScript and REST API integration.</li>
+									<li>Built and deployed a full-stack application with JWT authentication and third-party REST APIs.</li>
+									<li>Graduated with distinction on the capstone project.</li>
+								</ul>
+							</div>
+						</article>
+					</div>
+
+					<div class="grid" style="gap:20px">
+						<div class="mini-card" data-reveal>
+							<h4>Education</h4>
+							<ul class="mini-list">
+								<li>
+									<span class="t">B.Tech — Computer Science &amp; Engineering</span>
+									<span class="s">Poornima Institute of Engineering and Technology, Jaipur</span>
+									<span class="d">2022 – 2026</span>
+								</li>
+							</ul>
+						</div>
+
+						<div class="mini-card" data-reveal data-reveal-delay="80">
+							<h4>Certifications</h4>
+							<ul class="mini-list">
+								<li>
+									<span class="t">Web Development</span>
+									<span class="s">Academor by Technest</span>
+									<span class="d">2024</span>
+								</li>
+								<li>
+									<span class="t">Web Development</span>
+									<span class="s">Devyut Softech Pvt. Ltd.</span>
+								</li>
+								<li>
+									<span class="t">Internet of Things (IoT) Fundamentals</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ========================================================= ABOUT -->
+		<section class="section section--alt" id="about">
+			<div class="container">
+				<div class="about-grid">
+					<div data-reveal>
+						<figure class="about-photo" style="margin:0">
+							<picture>
+								<source srcset="images/keshav-about.webp" type="image/webp">
+								<img src="images/keshav-about.jpg" width="880" height="880" loading="lazy" decoding="async"
+									alt="Keshav Prashar">
+							</picture>
+						</figure>
+					</div>
+
+					<div data-reveal data-reveal-delay="100">
+						<p class="eyebrow">About</p>
+						<h2>React.js developer with production experience</h2>
+						<p>
+							I'm Keshav Prashar, a React.js and MERN stack developer based in Jaipur. Over a year of
+							production work, I've built component-based web applications end to end — interfaces,
+							REST APIs, authentication and the database behind them.
+						</p>
+						<p>
+							Most of my day-to-day is React: breaking an interface into components that can be reused,
+							wiring them to APIs, and keeping the result fast on ordinary phones and connections. On the
+							back end I work with Node.js, Express and MongoDB, and I've shipped features with JWT
+							authentication, protected routes, real-time updates and AI APIs.
+						</p>
+
+						<ul class="about-highlights">
+							<li><b>5+</b> production React applications built and shipped</li>
+							<li><b>10+</b> reusable, config-driven components designed</li>
+							<li><b>~20%</b> reduction in page load times</li>
+							<li><b>~30%</b> faster new feature development</li>
+						</ul>
+
+						<ul class="about-facts">
+							<li><span class="k">Location</span><span class="v">Jaipur, Rajasthan, India</span></li>
+							<li><span class="k">Focus</span><span class="v">React.js · MERN · AI-powered web apps</span></li>
+							<li><span class="k">Availability</span><span class="v">Freelance projects &amp; remote work</span></li>
+							<li><span class="k">Also known</span><span class="v">Java, Python, C++, MySQL</span></li>
+						</ul>
+
+						<div class="hero-cta" style="margin-bottom:0">
+							<a class="btn btn--primary" href="https://drive.google.com/file/d/168f3Vl1Ovfl6v-AZoG8Cg34N88siJEzO/view?usp=drivesdk" target="_blank" rel="noopener">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7.5 10.5L12 15l4.5-4.5M4.5 20h15"/></svg>
+								Download CV
+							</a>
+							<a class="btn btn--ghost" href="#contact">Work with me</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================================================= PROCESS -->
+		<section class="section" id="process">
+			<div class="container">
+				<div class="section-head section-head--center" data-reveal>
+					<p class="eyebrow">How I Work</p>
+					<h2>A simple, predictable process</h2>
+					<p>You always know what's happening, what's next and what it costs.</p>
+				</div>
+
+				<div class="process">
+					<article class="step" data-reveal>
+						<span class="n">01</span>
+						<h3>Understand</h3>
+						<p>We talk through what you need, who it's for and what success looks like. I map out the scope
+							before writing any code.</p>
+					</article>
+					<article class="step" data-reveal data-reveal-delay="80">
+						<span class="n">02</span>
+						<h3>Plan</h3>
+						<p>You get a clear feature list, the technology I'll use, a timeline and a fixed estimate — no
+							surprises later.</p>
+					</article>
+					<article class="step" data-reveal data-reveal-delay="160">
+						<span class="n">03</span>
+						<h3>Build</h3>
+						<p>I develop in stages and share progress as I go, so you can give feedback while it's still
+							cheap to change things. Tested and refined before it ships.</p>
+					</article>
+					<article class="step" data-reveal data-reveal-delay="240">
+						<span class="n">04</span>
+						<h3>Launch</h3>
+						<p>I deploy the project, hand over the code and walk you through it — plus support after launch
+							so you're never stuck.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================================================ FREELANCE CTA -->
+		<section class="section section--tight" aria-label="Start a project">
+			<div class="container">
+				<div class="cta-band" data-reveal>
+					<div>
+						<h2>Have a project in mind?</h2>
+						<p>Tell me what you're looking to build and I'll help turn the idea into a working
+							product — with a clear plan and estimate back, usually within 24 hours.</p>
+					</div>
+					<div class="actions">
+						<a class="btn btn--primary" href="#contact">Get a Free Quote</a>
+						<a class="btn btn--ghost" href="mailto:keshavprashar597@gmail.com?subject=Project%20enquiry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>Email Me</a>
+						<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+							WhatsApp Me
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================================================= CONTACT -->
+		<section class="section section--alt" id="contact">
+			<div class="container">
+				<div class="contact-grid">
+					<div data-reveal>
+						<p class="eyebrow">Contact</p>
+						<h2>Tell me about your project</h2>
+						<p>Send the details through the form and I'll reply with a clear plan, timeline and
+							estimate. Prefer to talk it through first? Use any of the channels below.</p>
+
+						<ul class="contact-list" style="margin-top:26px">
+							<li>
+								<a class="contact-item" href="mailto:keshavprashar597@gmail.com">
+									<span class="ci-icon" aria-hidden="true">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>
+									</span>
+									<span>
+										<span class="ci-label">Email</span>
+										<span class="ci-value">keshavprashar597@gmail.com</span>
+									</span>
+								</a>
+							</li>
+							<li>
+								<a class="contact-item" href="tel:+917633853037">
+									<span class="ci-icon" aria-hidden="true">
+										<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3.5h3.2l1.6 4-2 1.5a12.5 12.5 0 0 0 5.7 5.7l1.5-2 4 1.6V18a2.5 2.5 0 0 1-2.7 2.5A16.5 16.5 0 0 1 2.5 6.2 2.5 2.5 0 0 1 5 3.5z"/></svg>
+									</span>
+									<span>
+										<span class="ci-label">Phone</span>
+										<span class="ci-value">+91 76338 53037</span>
+									</span>
+								</a>
+							</li>
+							<li>
+								<a class="contact-item" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">
+									<span class="ci-icon" aria-hidden="true">
+										<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+									</span>
+									<span>
+										<span class="ci-label">WhatsApp</span>
+										<span class="ci-value">Message me directly</span>
+									</span>
+								</a>
+							</li>
+							<li>
+								<a class="contact-item" href="https://github.com/keshavprash" target="_blank" rel="noopener">
+									<span class="ci-icon" aria-hidden="true">
+										<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+									</span>
+									<span>
+										<span class="ci-label">GitHub</span>
+										<span class="ci-value">github.com/keshavprash</span>
+									</span>
+								</a>
+							</li>
+							<li>
+								<a class="contact-item" href="https://www.linkedin.com/in/keshav-prashar-9277b2256" target="_blank" rel="noopener">
+									<span class="ci-icon" aria-hidden="true">
+										<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM21 13.9c0-3.4-1.82-4.98-4.24-4.98-1.96 0-2.83 1.08-3.32 1.83V8.5H10.1c.04.95 0 12.5 0 12.5h3.34v-6.98c0-.3.02-.6.11-.82.24-.6.79-1.22 1.72-1.22 1.21 0 1.7.92 1.7 2.28V21H21v-7.1z"/></svg>
+									</span>
+									<span>
+										<span class="ci-label">LinkedIn</span>
+										<span class="ci-value">Connect with me</span>
+									</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<div data-reveal data-reveal-delay="100">
+						<form class="contact-form" id="quote-form" data-email="keshavprashar597@gmail.com">
+							<div class="form-row">
+								<div class="field">
+									<label for="f-name">Your name <span class="req" aria-hidden="true">*</span></label>
+									<input type="text" id="f-name" name="name" placeholder="Jane Sharma" required autocomplete="name">
+								</div>
+								<div class="field">
+									<label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+									<input type="email" id="f-email" name="email" placeholder="you@company.com" required autocomplete="email">
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="field">
+									<label for="f-type">What do you need?</label>
+									<select id="f-type" name="projectType">
+										<option value="">Select a service</option>
+										<option>Business Website</option>
+										<option>Custom Web Application</option>
+										<option>AI-Powered Application</option>
+										<option>Admin Dashboard</option>
+										<option>Website Improvements</option>
+										<option>Something else</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="f-budget">Budget range</label>
+									<select id="f-budget" name="budget">
+										<option value="">Not sure yet</option>
+										<option>Under ₹10,000</option>
+										<option>₹10,000 – ₹25,000</option>
+										<option>₹25,000 – ₹50,000</option>
+										<option>₹50,000+</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="field">
+								<label for="f-message">Project details <span class="req" aria-hidden="true">*</span></label>
+								<textarea id="f-message" name="message" required
+									placeholder="What are you building, who is it for, and when do you need it?"></textarea>
+							</div>
+
+							<div class="form-actions">
+								<button class="btn btn--primary" type="submit">
+									Send Project Inquiry
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+								</button>
+								<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">
+									<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+									Let's Talk
+								</a>
+							</div>
+
+							<p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+							<p class="form-note">This form opens your email app with the details filled in. Prefer
+								something quicker? Message me on WhatsApp.</p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ============================================================ FOOTER -->
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-about">
+					<a class="brand" href="#top" style="margin-bottom:14px">
+						<img src="images/kp.png" alt="" width="32" height="32" loading="lazy">
+						<span>Keshav Prashar</span>
+					</a>
+					<p>React.js &amp; MERN stack developer in Jaipur, building modern websites, scalable web
+						applications and AI-powered solutions for businesses and startups.</p>
+					<ul class="social">
+						<li><a href="https://github.com/keshavprash" target="_blank" rel="noopener" aria-label="GitHub">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+						</a></li>
+						<li><a href="https://www.linkedin.com/in/keshav-prashar-9277b2256" target="_blank" rel="noopener" aria-label="LinkedIn">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM21 13.9c0-3.4-1.82-4.98-4.24-4.98-1.96 0-2.83 1.08-3.32 1.83V8.5H10.1c.04.95 0 12.5 0 12.5h3.34v-6.98c0-.3.02-.6.11-.82.24-.6.79-1.22 1.72-1.22 1.21 0 1.7.92 1.7 2.28V21H21v-7.1z"/></svg>
+						</a></li>
+						<li><a href="https://www.instagram.com/keshav_prashar_00/" target="_blank" rel="noopener" aria-label="Instagram">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+						</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Explore</h3>
+					<ul class="footer-links">
+						<li><a href="#services">Services</a></li>
+						<li><a href="#work">Featured Work</a></li>
+						<li><a href="#why">Why Work With Me</a></li>
+						<li><a href="#skills">Tech Stack</a></li>
+						<li><a href="#experience">Experience</a></li>
+						<li><a href="#about">About</a></li>
+						<li><a href="#process">How I Work</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Get in touch</h3>
+					<ul class="footer-links">
+						<li><a href="mailto:keshavprashar597@gmail.com">keshavprashar597@gmail.com</a></li>
+						<li><a href="tel:+917633853037">+91 76338 53037</a></li>
+						<li><a href="https://wa.me/917633853037" target="_blank" rel="noopener">WhatsApp</a></li>
+						<li><a href="#contact">Get a project estimate</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p>&copy; <span id="year">2026</span> Keshav Prashar. All rights reserved.</p>
+				<p>Built from scratch with HTML, CSS &amp; JavaScript.</p>
+			</div>
+		</div>
+	</footer>
+
+	<button class="to-top" type="button" aria-label="Back to top">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+	</button>
+
+	<!-- ===================================================== PROJECT MODAL -->
+	<div class="pm" id="project-modal" hidden>
+		<div class="pm-backdrop" data-close-modal></div>
+		<div class="pm-dialog" role="dialog" aria-modal="true" aria-labelledby="pm-title" tabindex="-1">
+			<button class="pm-close" type="button" data-close-modal aria-label="Close project details">
+				<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+			</button>
+
+			<div class="pm-scroll">
+				<figure class="pm-stage">
+					<picture>
+						<source id="pm-stage-src" type="image/webp">
+						<img id="pm-stage-img" width="1600" height="1000" alt="" decoding="async">
+					</picture>
+					<button class="pm-arrow pm-arrow--prev" type="button" aria-label="Previous screen">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+					</button>
+					<button class="pm-arrow pm-arrow--next" type="button" aria-label="Next screen">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+					</button>
+					<span class="pm-count" id="pm-count" aria-hidden="true"></span>
+
+					<figcaption id="pm-stage-cap"></figcaption>
+				</figure>
+
+				<div class="pm-thumbs" id="pm-thumbs" role="group" aria-label="Project screens"></div>
+
+				<div class="pm-head">
+					<span class="project-kicker" id="pm-kicker"></span>
+					<h2 id="pm-title"></h2>
+					<p id="pm-lead"></p>
+				</div>
+
+				<div class="pm-grid">
+					<div class="pm-col">
+						<h3>The goal</h3>
+						<div id="pm-goal"></div>
+
+						<h3>Key features</h3>
+						<ul class="project-points" id="pm-features"></ul>
+
+						<h3>Technical implementation</h3>
+						<div id="pm-implementation"></div>
+
+						<h3>What it demonstrates</h3>
+						<ul class="pm-skills" id="pm-demonstrates"></ul>
+					</div>
+
+					<aside class="pm-col pm-col--side">
+						<h3>Technology stack</h3>
+						<ul class="tags" id="pm-tech"></ul>
+
+						<h3>Links</h3>
+						<div class="pm-links" id="pm-links"></div>
+
+						<p class="pm-disclaimer" id="pm-disclaimer"></p>
+					</aside>
+				</div>
+
+				<div class="pm-cta">
+					<div>
+						<h3>Want something like this for your business?</h3>
+						<p>Tell me what you need and I'll come back with a clear plan, timeline and estimate.</p>
+					</div>
+					<a class="btn btn--primary" href="#contact" data-close-modal>Get a Project Estimate</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/main.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Secrets — never commit
+.env
+.env.*
+*.pem
+*.key
+secrets.json
+
+# Dependencies / build output (this site has none, but keep the guard)
+node_modules/
+dist/
+build/
+
+# Logs and temp files
+*.log
+npm-debug.log*
+.cache/
+tmp/
