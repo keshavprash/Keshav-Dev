@@ -1481,3 +1481,192 @@ body.pm-open { overflow: hidden; }
 	.pm-count { top: 10px; left: 10px; font-size: .7rem; }
 	.section-cta .btn { width: 100%; justify-content: center; }
 }
+
+/* ==========================================================================
+   10. Inner pages — service page & guides
+   Additive only: nothing above this line is modified. Uses the same tokens,
+   so both themes and every breakpoint follow the existing design.
+   ========================================================================== */
+
+/* 10.1 Page header (a quieter hero for pages that are not the home page) */
+.page-hero {
+	position: relative;
+	padding-top: calc(var(--header-h) + clamp(34px, 5vw, 58px));
+	padding-bottom: clamp(30px, 4vw, 46px);
+	overflow: hidden;
+	border-bottom: 1px solid var(--line);
+}
+.page-hero::before {
+	content: "";
+	position: absolute;
+	top: -40%; left: 50%;
+	width: min(900px, 130vw); height: 460px;
+	transform: translateX(-50%);
+	background: radial-gradient(ellipse at center, var(--accent-soft), transparent 68%);
+	pointer-events: none;
+	z-index: 0;
+}
+.page-hero > .container { position: relative; z-index: 1; max-width: 860px; }
+.page-hero h1 { font-size: clamp(1.95rem, 4.4vw, 3rem); margin-bottom: .35em; }
+.page-hero .lede { font-size: clamp(1.02rem, 1.5vw, 1.15rem); color: var(--text-muted); max-width: 68ch; }
+.page-hero--wide > .container { max-width: var(--container); }
+
+/* 10.2 Breadcrumbs */
+.crumbs {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 18px;
+	font-size: .82rem;
+	color: var(--text-dim);
+}
+.crumbs a { color: var(--text-dim); }
+.crumbs a:hover { color: var(--accent-text); }
+.crumbs li { display: inline-flex; align-items: center; gap: 6px; }
+.crumbs li + li::before { content: "/"; color: var(--line-strong); }
+.crumbs [aria-current="page"] { color: var(--text-muted); }
+
+.page-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 18px;
+	margin-top: 20px;
+	font-size: .84rem;
+	color: var(--text-dim);
+}
+.page-meta > span { display: inline-flex; align-items: center; gap: 7px; }
+.page-meta svg { width: 15px; height: 15px; flex: none; }
+
+/* 10.3 Article layout & prose */
+.article-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 280px;
+	gap: clamp(32px, 5vw, 64px);
+	align-items: start;
+}
+.article-side { position: sticky; top: calc(var(--header-h) + 24px); display: grid; gap: 18px; }
+
+.prose { max-width: 72ch; }
+.prose > * + * { margin-top: 1.1rem; }
+.prose h2 {
+	font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+	margin-top: clamp(38px, 5vw, 56px);
+	margin-bottom: .5rem;
+	scroll-margin-top: calc(var(--header-h) + 20px);
+}
+.prose h2:first-child { margin-top: 0; }
+.prose h3 {
+	font-size: clamp(1.06rem, 1.6vw, 1.2rem);
+	margin-top: 30px;
+	margin-bottom: .4rem;
+	scroll-margin-top: calc(var(--header-h) + 20px);
+}
+.prose p { color: var(--text-muted); }
+.prose ul, .prose ol { padding-left: 1.25em; color: var(--text-muted); }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose li { margin-bottom: .5rem; }
+.prose li::marker { color: var(--accent); }
+.prose ol li::marker { color: var(--text-dim); font-weight: 600; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+/* 10.4 Callout */
+.callout {
+	border: 1px solid var(--line);
+	border-left: 3px solid var(--accent);
+	background: var(--surface);
+	border-radius: var(--radius-sm);
+	padding: 18px 20px;
+	font-size: .95rem;
+}
+.callout p { margin-bottom: .6rem; }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong { display: block; margin-bottom: .25rem; }
+
+/* 10.5 Tables — always scroll inside their own box, never the page */
+.table-wrap {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--surface);
+}
+.dtable { width: 100%; border-collapse: collapse; font-size: .92rem; min-width: 520px; }
+.dtable caption { text-align: left; padding: 14px 16px 0; color: var(--text-dim); font-size: .82rem; }
+.dtable th, .dtable td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.dtable thead th { color: var(--text); font-weight: 650; font-size: .82rem; letter-spacing: .04em; text-transform: uppercase; background: var(--surface-2); }
+.dtable tbody th { color: var(--text); font-weight: 600; }
+.dtable tbody tr:last-child th, .dtable tbody tr:last-child td { border-bottom: 0; }
+.dtable td { color: var(--text-muted); }
+.dtable .num { white-space: nowrap; color: var(--text); font-weight: 600; }
+
+/* 10.6 On-page contents list */
+.toc { padding: 20px 22px; }
+.toc h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .09em; color: var(--text-dim); margin-bottom: 12px; }
+.toc ol { counter-reset: toc; }
+.toc li { margin-bottom: 9px; font-size: .9rem; }
+.toc li:last-child { margin-bottom: 0; }
+.toc a { color: var(--text-muted); }
+.toc a:hover { color: var(--accent-text); }
+
+/* 10.7 Service blocks */
+.svc {
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--surface);
+	padding: clamp(22px, 3vw, 32px);
+	scroll-margin-top: calc(var(--header-h) + 20px);
+}
+.svc + .svc { margin-top: 22px; }
+.svc-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 6px; }
+.svc-head h2 { font-size: clamp(1.25rem, 2vw, 1.5rem); margin: 0; }
+.svc-lead { margin: 10px 0 22px; color: var(--text-muted); }
+.svc-qa { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 26px; }
+.svc-qa h3 {
+	font-size: .78rem; text-transform: uppercase; letter-spacing: .09em;
+	color: var(--accent-text); margin-bottom: 6px; font-weight: 650;
+}
+.svc-qa p { font-size: .94rem; margin: 0; }
+.svc-qa ul { display: grid; gap: 5px; }
+.svc-qa ul li { font-size: .94rem; color: var(--text-muted); padding-left: 18px; position: relative; }
+.svc-qa ul li::before {
+	content: ""; position: absolute; left: 0; top: .62em;
+	width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.svc-foot {
+	display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+	gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line);
+}
+.svc-foot .price { margin: 0; }
+.svc-evidence { font-size: .89rem; color: var(--text-dim); margin: 0; }
+
+/* 10.8 Guide cards (home + cross-links between pages) */
+.guide-card { display: flex; flex-direction: column; }
+.guide-card h3 { font-size: 1.08rem; margin-bottom: .45em; }
+.guide-card h3 a { color: var(--text); }
+.guide-card h3 a:hover { color: var(--accent-text); }
+.guide-card p { font-size: .93rem; flex: 1; }
+.guide-card .link-arrow { margin-top: 16px; }
+
+/* 10.9 Next-steps strip at the foot of an article */
+.next-reads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 14px; }
+.next-reads a {
+	display: block; padding: 16px 18px; border: 1px solid var(--line);
+	border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+	font-weight: 600; font-size: .95rem;
+}
+.next-reads a:hover { border-color: var(--line-strong); color: var(--accent-text); }
+.next-reads a span { display: block; font-weight: 400; font-size: .84rem; color: var(--text-dim); margin-top: 4px; }
+
+@media (max-width: 980px) {
+	.article-grid { grid-template-columns: minmax(0, 1fr); }
+	.article-side { position: static; }
+	.toc { display: none; }
+}
+@media (max-width: 640px) {
+	.svc-qa { grid-template-columns: minmax(0, 1fr); }
+	.next-reads { grid-template-columns: minmax(0, 1fr); }
+	.svc-foot .btn, .svc-foot .link-arrow { width: auto; }
+	.page-hero { padding-bottom: 30px; }
+}
