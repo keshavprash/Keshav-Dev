@@ -21,6 +21,38 @@
 		try { window.localStorage.setItem(key, val); } catch (e) { /* ignore */ }
 	}
 
+	/* ------------------------------------------------------------ Tracking */
+	// Conversion signals, emitted in two forms and depending on neither:
+	//   * a dataLayer push, picked up by Google Tag Manager if it is ever installed
+	//   * a DOM CustomEvent, for anything else that wants to listen
+	// Nothing here loads a third-party script or carries an account id, so the
+	// site behaves identically whether or not analytics is ever added.
+	function track(name, detail) {
+		var payload = detail || {};
+		try {
+			if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+				var d = { event: name };
+				for (var k in payload) { if (Object.prototype.hasOwnProperty.call(payload, k)) d[k] = payload[k]; }
+				window.dataLayer.push(d);
+			}
+		} catch (e) { /* analytics must never break the page */ }
+		try {
+			doc.dispatchEvent(new CustomEvent('kp:' + name, { detail: payload }));
+		} catch (e) { /* older browsers: the dataLayer push above still ran */ }
+	}
+
+	// Every outbound contact route is tagged in the markup with data-cta, so a
+	// tag manager can bind to it by selector without this file changing again.
+	doc.addEventListener('click', function (e) {
+		var el = e.target && e.target.closest ? e.target.closest('[data-cta]') : null;
+		if (!el) return;
+		track('contact_click', {
+			method: el.getAttribute('data-cta'),
+			location: el.getAttribute('data-cta-location') || 'page',
+			page: location.pathname
+		});
+	});
+
 	function applyTheme(theme) {
 		root.setAttribute('data-theme', theme);
 		var btn = $('.theme-toggle');
@@ -209,23 +241,64 @@
 			];
 		};
 
+		var say = function (msg, tone) {
+			if (!status) return;
+			status.textContent = msg;
+			status.classList.add('is-visible');
+			status.classList.toggle('is-error', tone === 'error');
+			status.classList.toggle('is-ok', tone === 'ok');
+		};
+
+		var mailtoFallback = function (brief) {
+			var subject = 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '');
+			window.location.href = 'mailto:' + EMAIL +
+				'?subject=' + encodeURIComponent(subject) +
+				'&body=' + encodeURIComponent(briefLines(brief).join('\n'));
+			say('Opening your email app with the message ready to send. If nothing opens, email ' + EMAIL + ' directly or message on WhatsApp.');
+		};
+
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
 
 			var brief = readBrief();
-			var subject = 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '');
-			var lines = briefLines(brief);
+			// Set data-endpoint on the form to a form-to-email service (Formspree,
+			// Web3Forms, Basin) and enquiries post straight through, giving a real
+			// thank-you state and a conversion that can be counted. Left empty, the
+			// form keeps its original behaviour of composing the mail locally.
+			var endpoint = (form.getAttribute('data-endpoint') || '').trim();
 
-			var href = 'mailto:' + EMAIL +
-				'?subject=' + encodeURIComponent(subject) +
-				'&body=' + encodeURIComponent(lines.join('\n'));
-
-			window.location.href = href;
-
-			if (status) {
-				status.textContent = 'Opening your email app with the message ready to send. If nothing opens, email ' + EMAIL + ' directly or message on WhatsApp.';
-				status.classList.add('is-visible');
+			if (!endpoint) {
+				track('generate_lead', { method: 'email_client', project_type: brief.type || 'unspecified' });
+				mailtoFallback(brief);
+				return;
 			}
+
+			var submitBtn = form.querySelector('button[type="submit"]');
+			if (submitBtn) submitBtn.disabled = true;
+			say('Sending your enquiry…');
+
+			fetch(endpoint, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+				body: JSON.stringify({
+					name: brief.name, email: brief.email, phone: brief.phone,
+					projectType: brief.type, budget: brief.budget, timeline: brief.timeline,
+					message: brief.message,
+					_subject: 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '')
+				})
+			}).then(function (res) {
+				if (!res.ok) throw new Error('HTTP ' + res.status);
+				form.reset();
+				say('Thanks — your enquiry is with me. I reply with a plan and an estimate, usually within 24 hours. If it is urgent, WhatsApp is faster.', 'ok');
+				track('generate_lead', { method: 'form', project_type: brief.type || 'unspecified', budget: brief.budget || 'unspecified' });
+			}).catch(function () {
+				// Never lose an enquiry to a failed request: hand it to the mail client.
+				say('That did not send — opening your email app with the details instead, so nothing is lost.', 'error');
+				setTimeout(function () { mailtoFallback(brief); }, 900);
+				track('form_error', { project_type: brief.type || 'unspecified' });
+			}).then(function () {
+				if (submitBtn) submitBtn.disabled = false;
+			});
 		});
 
 		// The WhatsApp button beside Submit: if anything has been filled in, send that

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en-IN" data-theme="dark">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#0b0d11">
+
+	<title>AI Web Application Development in India | Keshav Prashar</title>
+	<meta name="description" content="What AI can realistically do inside a business web application, the four patterns that actually work, what it costs, and when AI is the wrong answer. From a developer who has shipped one.">
+	<link rel="canonical" href="https://keshavprash.github.io/Keshav-Dev/ai-web-development/">
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Keshav Prashar">
+	<meta property="og:title" content="AI Web Application Development in India">
+	<meta property="og:description" content="What AI can realistically do inside a business web application, the four patterns that actually work, what it costs, and when AI is the wrong answer.">
+	<meta property="og:image" content="https://keshavprash.github.io/Keshav-Dev/images/og-cover.jpg">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta property="og:url" content="https://keshavprash.github.io/Keshav-Dev/ai-web-development/">
+	<meta property="og:locale" content="en_IN">
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="AI Web Application Development in India">
+	<meta name="twitter:description" content="What AI can realistically do inside a business web application, and when it is the wrong answer.">
+	<meta name="twitter:image" content="https://keshavprash.github.io/Keshav-Dev/images/og-cover.jpg">
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "WebPage",
+				"@id": "https://keshavprash.github.io/Keshav-Dev/ai-web-development/#webpage",
+				"url": "https://keshavprash.github.io/Keshav-Dev/ai-web-development/",
+				"name": "AI Web Application Development in India | Keshav Prashar",
+				"description": "What AI can realistically do inside a business web application, the four patterns that actually work, what it costs, and when AI is the wrong answer.",
+				"inLanguage": "en-IN",
+				"isPartOf": { "@id": "https://keshavprash.github.io/Keshav-Dev/#website" },
+				"about": { "@id": "https://keshavprash.github.io/Keshav-Dev/#service-ai-application" },
+				"publisher": { "@id": "https://keshavprash.github.io/Keshav-Dev/#person" },
+				"breadcrumb": { "@id": "https://keshavprash.github.io/Keshav-Dev/ai-web-development/#breadcrumb" },
+				"dateModified": "2026-08-30"
+			},
+			{
+				"@type": "Service",
+				"@id": "https://keshavprash.github.io/Keshav-Dev/#service-ai-application",
+				"name": "AI-Powered Web Application Development",
+				"description": "Web applications with AI APIs behind them — automated analysis, generated feedback and scoring built into a workflow your users actually follow.",
+				"serviceType": "AI web application development",
+				"provider": { "@id": "https://keshavprash.github.io/Keshav-Dev/#person" },
+				"areaServed": [
+					{ "@type": "Country", "name": "India" },
+					{ "@type": "State", "name": "Rajasthan" },
+					{ "@type": "City", "name": "Jaipur" }
+				],
+				"url": "https://keshavprash.github.io/Keshav-Dev/ai-web-development/"
+			},
+			{
+				"@type": "Person",
+				"@id": "https://keshavprash.github.io/Keshav-Dev/#person",
+				"name": "Keshav Prashar",
+				"jobTitle": "Freelance React.js & MERN Stack Developer",
+				"url": "https://keshavprash.github.io/Keshav-Dev/",
+				"email": "mailto:keshavprashar597@gmail.com",
+				"telephone": "+91-7633853037",
+				"address": {
+					"@type": "PostalAddress",
+					"addressLocality": "Jaipur",
+					"addressRegion": "Rajasthan",
+					"addressCountry": "IN"
+				},
+				"sameAs": [
+					"https://github.com/keshavprash",
+					"https://www.linkedin.com/in/keshav-prashar-9277b2256"
+				]
+			},
+			{
+				"@type": "BreadcrumbList",
+				"@id": "https://keshavprash.github.io/Keshav-Dev/ai-web-development/#breadcrumb",
+				"itemListElement": [
+					{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://keshavprash.github.io/Keshav-Dev/" },
+					{ "@type": "ListItem", "position": 2, "name": "Services", "item": "https://keshavprash.github.io/Keshav-Dev/services/" },
+					{ "@type": "ListItem", "position": 3, "name": "AI web application development" }
+				]
+			}
+		]
+	}
+	</script>
+	<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+	<meta name="author" content="Keshav Prashar">
+
+	<link rel="icon" type="image/jpeg" href="../images/kp.jpg">
+	<link rel="apple-touch-icon" href="../images/kp.jpg">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../css/style.css">
+
+	<script>
+		// Restore the visitor's saved theme before first paint.
+		(function () {
+			try {
+				var saved = localStorage.getItem('kp-theme');
+				if (saved === 'light' || saved === 'dark') {
+					document.documentElement.setAttribute('data-theme', saved);
+				} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+					document.documentElement.setAttribute('data-theme', 'light');
+				}
+				var tc = document.querySelector('meta[name="theme-color"]');
+				if (tc && document.documentElement.getAttribute('data-theme') === 'light') {
+					tc.setAttribute('content', '#ffffff');
+				}
+			} catch (e) { /* keep the default dark theme */ }
+		})();
+	</script>
+</head>
+
+<body>
+	<a class="skip-link" href="#main">Skip to main content</a>
+
+	<header class="site-header">
+		<div class="container">
+			<nav class="nav" aria-label="Primary">
+				<a class="brand" href="../">
+					<img src="../images/kp.jpg" alt="" width="32" height="32" decoding="async">
+					<span>Keshav Prashar</span>
+				</a>
+
+				<ul class="nav-links">
+					<li><a href="../services/">Services</a></li>
+					<li><a href="../#work">Work</a></li>
+					<li><a href="../#about">About</a></li>
+					<li><a href="../#process">Process</a></li>
+					<li><a href="../#faq">FAQ</a></li>
+					<li><a href="../#contact">Contact</a></li>
+				</ul>
+
+				<div class="nav-actions">
+					<button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme">
+						<svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2 12h2.4M19.6 12H22M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+						<svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4 8.3 8.3 0 1 0 20 14.5z"/></svg>
+					</button>
+
+					<a class="btn btn--primary btn--sm btn--hire" href="../#contact">Hire Me</a>
+
+					<button class="icon-btn nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+					</button>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<div class="mobile-menu" id="mobile-menu">
+		<a href="../services/">Services</a>
+		<a href="../#work">Work</a>
+		<a href="../#about">About</a>
+		<a href="../#process">Process</a>
+		<a href="../#faq">FAQ</a>
+		<a href="../#contact">Contact</a>
+		<a class="btn btn--primary" href="../#contact">Get a Project Estimate</a>
+	</div>
+
+	<main id="main" tabindex="-1">
+		<!-- ==================================================== PAGE HERO -->
+		<section class="page-hero">
+			<div class="container">
+				<ol class="crumbs" data-reveal>
+					<li><a href="../">Home</a></li>
+					<li><a href="../services/">Services</a></li>
+					<li><span aria-current="page">AI web application development</span></li>
+				</ol>
+
+				<h1 data-reveal>AI web application development</h1>
+
+				<p class="lede" data-reveal>
+					Most "AI features" are a chat box bolted onto a corner of the screen that nobody uses twice.
+					The ones that earn their cost do a specific job a person is currently doing by hand. This page
+					is about which is which — what AI can realistically do inside a business web application,
+					what it costs to build, and when the honest answer is that you do not need it.
+				</p>
+
+				<div class="page-meta" data-reveal>
+					<span>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.8"/></svg>
+						Jaipur, Rajasthan — remote across India and worldwide
+					</span>
+					<span>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"/></svg>
+						React · Node.js · MongoDB · AI APIs
+					</span>
+					<span>
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>
+						Plan and estimate back, usually within 24 hours
+					</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="article-grid">
+					<article class="prose" data-reveal>
+
+						<h2 id="what-works">The four patterns that actually work</h2>
+						<p>Across the AI features worth building, almost all of them are one of these four. If your
+							idea does not fit one, it is worth asking what job it is really doing.</p>
+
+						<h3>1. Analyse a document and score it</h3>
+						<p>Something arrives — a CV, an invoice, a contract, a form — and a person currently reads
+							it and makes a judgement. The AI extracts the structure, checks it against criteria and
+							returns a score with reasons. The person still decides; they just start from an answer
+							instead of a blank page.</p>
+
+						<h3>2. Generate a first draft</h3>
+						<p>Product descriptions, reply templates, summaries of a long thread, a proposal outline.
+							The value is not that the output is perfect. It is that editing beats writing.</p>
+
+						<h3>3. Classify and route</h3>
+						<p>Incoming enquiries, support tickets, applications — sorted by topic, urgency or
+							department, and sent to the right place without someone reading each one first. This is
+							the least glamorous pattern and often the highest return.</p>
+
+						<h3>4. Answer questions about your own content</h3>
+						<p>A search box over your documentation, policies or catalogue that answers in sentences
+							rather than returning ten links. Useful when the content is large and the questions are
+							repetitive. Useless when the content is small enough to read.</p>
+
+						<div class="callout">
+							<p><strong>The test that saves you money</strong>
+								Name the person whose work this replaces or shortens, and say how many times a week
+								they do it. If you cannot name them, or the answer is "twice a month", the feature
+								will cost more to build and run than it saves.</p>
+						</div>
+
+						<h2 id="what-it-doesnt">What AI will not do for you</h2>
+						<p>Worth stating plainly, because a lot of money gets spent here:</p>
+						<ul>
+							<li><strong>It will not be reliably correct.</strong> It is right most of the time and
+								confidently wrong the rest. Anything where a wrong answer is expensive needs a human
+								check in the flow, and that check has to be designed in, not bolted on.</li>
+							<li><strong>It will not fix a process nobody follows.</strong> Automating a broken
+								workflow gives you a faster broken workflow.</li>
+							<li><strong>It will not replace your database.</strong> It is bad at arithmetic, totals
+								and anything that must reconcile. Those belong in code.</li>
+							<li><strong>It will not be free to run.</strong> Every call costs money, forever. A
+								feature used a thousand times a day has a monthly bill.</li>
+							<li><strong>It will not make a dull product interesting.</strong> "AI-powered" on the
+								homepage is not a feature.</li>
+						</ul>
+
+						<h2 id="engineering">The engineering that decides whether it survives</h2>
+						<p>Getting an AI response onto the screen is a weekend. Making it hold up in production is
+							the actual work, and it is mostly about what happens when the API does not cooperate.</p>
+						<ul>
+							<li><strong>Fallbacks.</strong> The provider will be slow, rate-limited or down. The
+								feature should degrade — a queued job, a cached result, a manual path — not take the
+								page down with it.</li>
+							<li><strong>Keys stay on the server.</strong> An API key in front-end code is a key
+								anyone can read and spend. Every call goes through your own backend.</li>
+							<li><strong>Cost control.</strong> Rate limits per user, caps, caching of repeated
+								inputs. Without them, one loop or one bad actor is an unpleasant invoice.</li>
+							<li><strong>Store the output.</strong> If the result is not saved, you cannot report on
+								it, audit it, or show the user what they got last week.</li>
+							<li><strong>An isolated service layer.</strong> Providers and models change often. When
+								the AI calls live in one module, switching provider is an afternoon; when they are
+								scattered through the app, it is a rewrite.</li>
+						</ul>
+
+						<h2 id="proof">What I have actually built</h2>
+						<p>I am not going to describe hypothetical work. The
+							<a href="https://github.com/keshavprash/AI-Interview-Preparation-Platform" target="_blank" rel="noopener" data-cta="github">AI
+							Interview Preparation Platform</a> is a MERN application where the AI does real work in
+							a real workflow, and the source is public:</p>
+						<ul>
+							<li>A resume is uploaded, parsed from PDF, and scored against ATS-style criteria, with
+								matched skills and missing keywords returned — that is pattern 1.</li>
+							<li>Mock interview sessions generate questions, take answers and return scored feedback
+								with a competency breakdown — patterns 1 and 2 together.</li>
+							<li>Coding assessments run against a code-execution service, <em>with an offline
+								fallback path</em> so an assessment still completes when that service is
+								unavailable.</li>
+							<li>Every AI call sits behind its own service layer; scores and reports are stored, so
+								the analytics screen can chart progress over time.</li>
+						</ul>
+						<p>That last pair — the fallback and the stored output — are the parts that separate a demo
+							from something you could put in front of users.
+							<a href="../#work">Open the project gallery</a> to see the screens, or read the code.</p>
+
+						<h2 id="cost">What it costs</h2>
+						<p>An AI-powered application starts at <strong>₹15,000</strong> for a focused feature inside
+							an application — one workflow, one AI step, done properly with fallbacks and stored
+							results. It rises with the number of workflows, whether it needs its own admin area, and
+							how much of the surrounding application has to be built too.</p>
+						<p>Two costs people forget:</p>
+						<ul>
+							<li><strong>The API bill</strong>, which is ongoing and scales with use. Worth modelling
+								before you build, not after.</li>
+							<li><strong>The evaluation work.</strong> Deciding whether the output is good enough is
+								its own task, and it is the one most often skipped.</li>
+						</ul>
+						<p><a href="../website-development-cost-india/">The full cost breakdown</a> explains what
+							moves the number on any build, AI or not.</p>
+
+						<h2 id="process">How a build runs</h2>
+						<ol>
+							<li><strong>Find the job.</strong> We identify the manual step worth automating and how
+								often it happens. If there is not one, I say so.</li>
+							<li><strong>Define good enough.</strong> We agree what an acceptable output looks like
+								before anything is built, so "is this working?" has an answer.</li>
+							<li><strong>Build the thin path.</strong> One workflow, end to end, with the fallback in
+								place from the start.</li>
+							<li><strong>Try it on real inputs.</strong> Your actual documents, not samples.</li>
+							<li><strong>Harden and ship.</strong> Rate limits, caching, cost caps, stored results,
+								then deployment and handover.</li>
+						</ol>
+
+						<h2 id="faq">Questions I get asked</h2>
+						<h3>Do I need my own AI model?</h3>
+						<p>Almost certainly not. Training or hosting a model is a large, ongoing cost that a
+							hosted API removes entirely. Custom models make sense at a scale and specificity most
+							businesses never reach.</p>
+						<h3>Is my data safe?</h3>
+						<p>That depends on the provider you choose and their terms, which is a decision to make
+							deliberately and early — not something I can promise on someone else's behalf. What I
+							control is the engineering: keys stay server-side, only the data the feature needs gets
+							sent, and anything sensitive can be stripped or masked before the call.</p>
+						<h3>Can you add AI to an application I already have?</h3>
+						<p>Usually yes, if it has a backend I can extend. That is a
+							<a href="../services/#api-backend">backend and API</a> job first and an AI job second.</p>
+						<h3>How long does it take?</h3>
+						<p>I do not quote a timeline before understanding the scope. You get a feature list, the
+							technology and a fixed timeline in writing at the planning stage, agreed before any code
+							is written.</p>
+
+						<h2 id="next">Next steps</h2>
+						<p>If you can name the manual step you want shortened, that is enough to start.
+							<a href="../#contact">Describe it to me</a> and I will come back with a plan, a fixed
+							estimate and an honest view on whether AI is the right tool for it — including when it
+							is not.</p>
+
+						<div class="next-reads">
+							<a href="../services/">All web development services
+								<span>React, MERN, custom applications, APIs, redesign and maintenance.</span></a>
+							<a href="../website-development-cost-india/">What a website or web app costs in India
+								<span>The price drivers, the yearly running costs, and why quotes differ.</span></a>
+						</div>
+					</article>
+
+					<aside class="article-side">
+						<nav class="card toc" aria-label="On this page">
+							<h2>On this page</h2>
+							<ol>
+								<li><a href="#what-works">Four patterns that work</a></li>
+								<li><a href="#what-it-doesnt">What AI will not do</a></li>
+								<li><a href="#engineering">The engineering that matters</a></li>
+								<li><a href="#proof">What I have built</a></li>
+								<li><a href="#cost">What it costs</a></li>
+								<li><a href="#process">How a build runs</a></li>
+								<li><a href="#faq">Questions I get asked</a></li>
+							</ol>
+						</nav>
+
+						<div class="card">
+							<h3>Have a manual step to automate?</h3>
+							<p style="font-size:.93rem">Describe it in a few lines. I will tell you whether AI is
+								the right tool, and what it would cost — including when the answer is no.</p>
+							<a class="btn btn--primary btn--sm" href="../#contact" style="margin-top:14px">Get an estimate</a>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================================================= CLOSING CTA -->
+		<section class="section section--tight" aria-label="Start a project">
+			<div class="container">
+				<div class="cta-band" data-reveal>
+					<div>
+						<h2>Tell me what you need built</h2>
+						<p>Send a short description of the project and I'll come back with a clear plan, timeline
+							and a fixed estimate — usually within 24 hours. Based in Jaipur, working remotely with
+							clients across India.</p>
+					</div>
+					<div class="actions">
+						<a class="btn btn--primary" href="../#contact">Get a Free Quote</a>
+						<a class="btn btn--ghost" href="mailto:keshavprashar597@gmail.com?subject=Project%20enquiry" data-cta="email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>Email Me</a>
+						<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" data-cta="whatsapp">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+							WhatsApp Me
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ============================================================ FOOTER -->
+	<footer class="site-footer">
+		<div class="container">
+			<div class="footer-grid">
+				<div class="footer-about">
+					<a class="brand" href="../" style="margin-bottom:14px">
+						<img src="../images/kp.jpg" alt="" width="32" height="32" loading="lazy" decoding="async">
+						<span>Keshav Prashar</span>
+					</a>
+					<p>Freelance React.js &amp; MERN stack developer building modern websites, scalable web
+						applications and AI-powered solutions for businesses and startups across India. Based in
+						Jaipur, Rajasthan.</p>
+					<ul class="social">
+						<li><a href="https://github.com/keshavprash" target="_blank" rel="noopener" aria-label="GitHub" data-cta="github">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+						</a></li>
+						<li><a href="https://www.linkedin.com/in/keshav-prashar-9277b2256" target="_blank" rel="noopener" aria-label="LinkedIn" data-cta="linkedin">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM21 13.9c0-3.4-1.82-4.98-4.24-4.98-1.96 0-2.83 1.08-3.32 1.83V8.5H10.1c.04.95 0 12.5 0 12.5h3.34v-6.98c0-.3.02-.6.11-.82.24-.6.79-1.22 1.72-1.22 1.21 0 1.7.92 1.7 2.28V21H21v-7.1z"/></svg>
+						</a></li>
+						<li><a href="https://www.instagram.com/keshav_prashar_00/" target="_blank" rel="noopener" aria-label="Instagram">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+						</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Explore</h3>
+					<ul class="footer-links">
+						<li><a href="../services/">Web development services</a></li>
+						<li><a href="../ai-web-development/">AI web application development</a></li>
+						<li><a href="../#work">Featured work</a></li>
+						<li><a href="../#about">About Keshav</a></li>
+						<li><a href="../#process">How I work</a></li>
+						<li><a href="../#faq">Freelance FAQ</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3>Guides for clients</h3>
+					<ul class="footer-links">
+						<li><a href="../website-development-cost-india/">What a website costs in India</a></li>
+						<li><a href="../react-vs-wordpress/">React vs WordPress</a></li>
+						<li><a href="../hire-freelance-web-developer-india/">Choosing a freelance developer</a></li>
+						<li><a href="mailto:keshavprashar597@gmail.com" data-cta="email">keshavprashar597@gmail.com</a></li>
+						<li><a href="https://wa.me/917633853037" target="_blank" rel="noopener" data-cta="whatsapp">WhatsApp</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p>&copy; <span id="year">2026</span> Keshav Prashar. All rights reserved.</p>
+				<p>Based in Jaipur, Rajasthan — working with clients across India and remotely.</p>
+			</div>
+		</div>
+	</footer>
+
+	<button class="to-top" type="button" aria-label="Back to top">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+	</button>
+
+	<script src="../js/main.js" defer></script>
+</body>
+
+</html>
