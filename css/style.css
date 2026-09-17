@@ -718,7 +718,28 @@ html[data-theme="light"] .project-media::after {
 	display: block;
 }
 .project-body h3 { font-size: clamp(1.25rem, 2.2vw, 1.55rem); margin-bottom: 10px; }
-.project-summary { font-size: .96rem; margin-bottom: 18px; }
+.project-summary { font-size: .96rem; margin-bottom: 14px; }
+
+/* "Relevant if you need" — answers "why should a client care?" on the card itself */
+.project-fit {
+	font-size: .86rem;
+	line-height: 1.5;
+	color: var(--text-muted);
+	margin-bottom: 18px;
+	padding: 9px 12px;
+	border-left: 2px solid var(--accent);
+	background: var(--accent-soft);
+	border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+.project-fit .k {
+	display: block;
+	font-size: .7rem;
+	font-weight: 700;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	color: var(--accent-text);
+	margin-bottom: 2px;
+}
 
 .project-points { margin-bottom: 20px; display: grid; gap: 9px; }
 .project-points li {
@@ -1133,6 +1154,35 @@ html[data-theme="light"] .project-media::after {
 .to-top:hover { color: var(--accent-text); }
 .to-top svg { width: 18px; height: 18px; }
 
+/* Sticky mobile contact bar. Desktop already keeps "Hire Me" in the header; on a
+   phone the first WhatsApp button is otherwise several screens down. Shown only
+   under 640px, hidden while the menu or a project modal is open and while the
+   contact form itself is on screen. */
+.mobile-cta { display: none; }
+@media (max-width: 640px) {
+	.mobile-cta {
+		position: fixed;
+		left: 0; right: 0; bottom: 0;
+		z-index: 95;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px));
+		background: var(--bg-elev);
+		border-top: 1px solid var(--line);
+		box-shadow: 0 -10px 30px -16px rgba(0, 0, 0, .6);
+		transition: transform .22s ease, opacity .22s ease, visibility .22s;
+	}
+	.mobile-cta .btn { width: 100%; padding-inline: 10px; white-space: nowrap; }
+	.mobile-cta .btn svg { width: 17px; height: 17px; }
+	.mobile-cta.is-hidden,
+	body.menu-open .mobile-cta,
+	body.pm-open .mobile-cta { transform: translateY(110%); opacity: 0; visibility: hidden; }
+	/* keep the footer's last lines and the back-to-top button clear of the bar */
+	.site-footer { padding-bottom: calc(28px + 74px + env(safe-area-inset-bottom, 0px)); }
+	.to-top { bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* 7. Motion -------------------------------------------------------------- */
 [data-reveal] {
 	opacity: 0;
@@ -1202,7 +1252,7 @@ html[data-theme="light"] .project-media::after {
 	.floating-badge { right: auto; left: 8px; bottom: -16px; max-width: 210px; }
 	.tl-date { margin-left: 0; }
 	.card { padding: 22px; }
-	.to-top { right: 14px; bottom: 14px; }
+	.to-top { right: 14px; }
 	.media-tag, .media-hint { font-size: .68rem; padding: 4px 9px; }
 	.media-tag { left: 10px; bottom: 10px; }
 	.media-hint { right: 10px; bottom: 10px; }
@@ -1214,7 +1264,7 @@ html[data-theme="light"] .project-media::after {
 }
 
 @media print {
-	.site-header, .to-top, .mobile-menu, .cta-band, .contact-form, .pm { display: none !important; }
+	.site-header, .to-top, .mobile-menu, .mobile-cta, .cta-band, .contact-form, .pm { display: none !important; }
 	body { background: #fff; color: #000; }
 	/* reveals never ran for off-screen sections - force them visible on paper */
 	[data-reveal] { opacity: 1 !important; transform: none !important; }
@@ -1447,6 +1497,7 @@ main:focus { outline: none; }
 .pm-col--side { border-left: 1px solid var(--line); padding-left: clamp(20px, 2.4vw, 30px); }
 
 .pm-links { display: grid; gap: 9px; }
+.pm-role { font-size: .9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 22px; }
 .pm-links .btn { width: 100%; }
 .pm-disclaimer {
 	margin-top: 22px;

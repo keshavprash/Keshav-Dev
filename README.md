@@ -16,7 +16,9 @@ Built as a hand-written static site — no frameworks, no build step, no depende
 - Project case studies — the goal, key features, technical implementation and what each demonstrates
 - Project galleries — 17 interface screens with thumbnails, prev/next, keyboard and touch navigation
 - Freelance services with starting prices and per-service enquiry CTAs
-- Contact inquiry form (name, email, project type, budget, timeline, phone, message)
+- Contact inquiry form (name, email, company, current website, project type, budget, timeline, phone, preferred reply channel, message)
+- Sticky WhatsApp / Get-a-Free-Quote bar on phones (under 640px), hidden while the menu, a project modal or the contact form is on screen
+- Custom `404.html` that keeps lost visitors on the site (noindex, absolute `/Keshav-Dev/` paths)
 - SEO metadata — canonical URL, Open Graph, Twitter cards and a JSON-LD `@graph`
   (`WebSite`, `ProfilePage`, `ImageObject`, `Person`, four `Service` nodes, an `ItemList`
   of the projects and a `SoftwareSourceCode` node per project)
@@ -43,7 +45,10 @@ Nothing is loaded from a CDN except the Inter webfont from Google Fonts.
 
 ```
 Keshav-Dev/
-├── index.html                 # The entire site — every section lives here
+├── index.html                 # The home page — every section lives here
+├── 404.html                   # Served by GitHub Pages for any missing path (noindex)
+├── services/, ai-web-development/, website-development-cost-india/,
+│   react-vs-wordpress/, hire-freelance-web-developer-india/   # one index.html each
 ├── css/
 │   └── style.css              # Single stylesheet (tokens → base → components → responsive → modal)
 ├── js/
@@ -63,6 +68,9 @@ Keshav-Dev/
 ├── .github/workflows/static.yml
 ├── .nojekyll
 └── README.md
+
+client-acquisition/            # NOT committed (see .gitignore): outreach templates,
+                               # lead tracker, pipeline dashboard — contains prospect data
 ```
 
 ### Page sections
@@ -233,7 +241,8 @@ All of its content is written with `textContent` / `createElement`, so nothing i
 ## The contact form
 
 The form has no backend. On submit it builds a pre-filled `mailto:` message
-(name, email, phone, project type, budget, timeline, details) and opens the visitor's mail app.
+(name, email, phone, company, current website, project type, budget, timeline, preferred reply
+channel, details) and opens the visitor's mail app.
 The WhatsApp button next to it sends the **same** brief — `readBrief()` and `briefLines()` in
 `js/main.js` are shared by both routes, so switching channel never loses what was typed. With an
 untouched form the WhatsApp button keeps its plain greeting.
@@ -241,9 +250,26 @@ untouched form the WhatsApp button keeps its plain greeting.
 To switch to a hosted form service instead (so submissions arrive without the visitor
 having a mail client set up):
 
-1. Sign up at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) and get an endpoint.
-2. In `index.html`, add `action="https://formspree.io/f/YOUR_ID" method="POST"` to `<form id="quote-form">`.
-3. In `js/main.js`, delete the `form.addEventListener('submit', …)` block so the browser posts the form normally.
+1. Sign up at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) and get an endpoint URL.
+2. In `index.html`, paste it into the empty `data-endpoint=""` attribute on `<form id="quote-form">`.
+3. That is all — `js/main.js` already posts JSON to `data-endpoint` when it is set, shows a thank-you
+   state, fires a `generate_lead` event, and falls back to the `mailto:` route if the request fails.
+
+### Conversion events
+
+`js/main.js` emits every conversion signal twice — as a `window.dataLayer.push({event: …})` for a tag
+manager, and as a DOM `CustomEvent` named `kp:<event>` — without loading any third-party script or
+carrying an account id. Nothing is sent anywhere until analytics is actually installed.
+
+| Event | When | Parameters |
+| --- | --- | --- |
+| `contact_click` | Any element with `data-cta` is clicked | `method` (whatsapp, email, phone, cv_download, github, linkedin), `location` (page, sticky, footer), `page` |
+| `form_start` | First keystroke or selection in the enquiry form | `page` |
+| `generate_lead` | Form submitted | `method` (form or email_client), `project_type`, `budget` |
+| `form_error` | Hosted endpoint failed; mail fallback used | `project_type` |
+| `project_view` | A project case-study modal is opened | `project`, `page` |
+
+No personal data (names, emails, phone numbers, message text) is ever included in an event.
 
 ---
 

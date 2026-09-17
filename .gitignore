@@ -23,3 +23,9 @@ build/
 npm-debug.log*
 .cache/
 tmp/
+
+# Client-acquisition hub: outreach templates, lead tracker and pipeline notes.
+# Contains prospect names and contact details. This repository is PUBLIC and
+# every committed file is deployed to the live site, so the folder is never
+# committed. It lives only in the local (OneDrive-synced) working copy.
+client-acquisition/

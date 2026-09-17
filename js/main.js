@@ -102,6 +102,7 @@
 		if (header) header.classList.toggle('is-menu-open', open);
 		navToggle.setAttribute('aria-expanded', String(open));
 		navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+		doc.body.classList.toggle('menu-open', open);
 		doc.body.style.overflow = open ? 'hidden' : '';
 	}
 
@@ -222,8 +223,10 @@
 			var get = function (k) { return String(data.get(k) || '').trim(); };
 			return {
 				name: get('name'), email: get('email'), phone: get('phone'),
+				company: get('company'), website: get('website'),
 				type: get('projectType'), budget: get('budget'),
-				timeline: get('timeline'), message: get('message')
+				timeline: get('timeline'), contact: get('contactMethod'),
+				message: get('message')
 			};
 		};
 
@@ -232,9 +235,12 @@
 				'Name: ' + b.name,
 				'Email: ' + b.email,
 				'Phone / WhatsApp: ' + (b.phone || 'Not provided'),
+				'Company / business: ' + (b.company || 'Not provided'),
+				'Current website: ' + (b.website || 'Not provided'),
 				'Project type: ' + (b.type || 'Not specified'),
 				'Budget range: ' + (b.budget || 'Not specified'),
 				'Timeline: ' + (b.timeline || 'Not specified'),
+				'Preferred reply: ' + (b.contact || 'Email'),
 				'',
 				'Project details:',
 				b.message
@@ -256,6 +262,16 @@
 				'&body=' + encodeURIComponent(briefLines(brief).join('\n'));
 			say('Opening your email app with the message ready to send. If nothing opens, email ' + EMAIL + ' directly or message on WhatsApp.');
 		};
+
+		// Counted once per page view: how many people start the form vs. finish it.
+		var formStarted = false;
+		var onFormStart = function () {
+			if (formStarted) return;
+			formStarted = true;
+			track('form_start', { page: location.pathname });
+		};
+		form.addEventListener('input', onFormStart);
+		form.addEventListener('change', onFormStart);
 
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
@@ -282,8 +298,9 @@
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 				body: JSON.stringify({
 					name: brief.name, email: brief.email, phone: brief.phone,
+					company: brief.company, website: brief.website,
 					projectType: brief.type, budget: brief.budget, timeline: brief.timeline,
-					message: brief.message,
+					contactMethod: brief.contact, message: brief.message,
 					_subject: 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '')
 				})
 			}).then(function (res) {
@@ -329,6 +346,21 @@
 	}
 
 
+	/* --------------------------------------------------- Sticky mobile bar */
+	// The bar's "Get a Free Quote" is redundant once the form itself is visible,
+	// so it slides away while #contact is on screen. Pages without a contact
+	// section (the guides) keep the bar throughout.
+	var mobileCta = $('.mobile-cta');
+	var contactSection = $('#contact');
+	if (mobileCta && contactSection && 'IntersectionObserver' in window) {
+		var ctaSpy = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				mobileCta.classList.toggle('is-hidden', entry.isIntersecting);
+			});
+		}, { threshold: 0.15 });
+		ctaSpy.observe(contactSection);
+	}
+
 	/* ------------------------------------------------------- Project modal */
 	var IMG = 'images/projects/';
 
@@ -365,6 +397,7 @@
 				'Dashboard, charting and reporting interfaces.',
 				'End-to-end full-stack delivery, front end through database.'
 			],
+			role: 'Sole developer — product scope, React front end, Node.js and Express API, MongoDB schema, the AI service layer with its fallbacks, Socket.IO notifications and the admin console.',
 			tech: ['MERN', 'React 19', 'Vite', 'Redux Toolkit', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB', 'Mongoose', 'JWT', 'Socket.IO', 'AI APIs'],
 			source: 'https://github.com/keshavprash/AI-Interview-Preparation-Platform',
 			note: 'These images are UI previews I built from the project’s own feature set and source code. They are not screenshots of a hosted deployment — the platform runs locally and is not currently deployed publicly.',
@@ -410,6 +443,7 @@
 				'Dashboard metrics, charts and audit history.',
 				'API documentation with Swagger.'
 			],
+			role: 'Sole developer — Spring Boot REST API, PostgreSQL schema, JWT and BCrypt security, the React and Material UI front end, and the Swagger documentation.',
 			tech: ['Spring Boot 3', 'Java 21', 'PostgreSQL', 'React 18', 'Material UI', 'JWT', 'BCrypt', 'Swagger'],
 			source: 'https://github.com/keshavprash/employee-task-management',
 			note: 'These images are UI previews I built from the project’s own feature set and source code. They are not screenshots of a hosted deployment — the application runs locally and is not currently deployed publicly.',
@@ -450,6 +484,7 @@
 				'Client–server request flow and API integration.',
 				'Environment-driven configuration and production builds.'
 			],
+			role: 'Sole developer — the canvas game loop and React component structure, the Express API, MongoDB persistence and the Vite build configuration.',
 			tech: ['MERN', 'React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'HTML Canvas'],
 			source: 'https://github.com/keshavprash/space-shooter-mern',
 			note: 'These images are UI previews I built from the project’s own feature set and source code. They are not screenshots of a hosted deployment — the game runs locally and is not currently deployed publicly.',
@@ -491,6 +526,7 @@
 				'SEO and social metadata, including structured data.',
 				'CI/CD with GitHub Actions and GitHub Pages.'
 			],
+			role: 'Sole developer — design, copy, HTML, CSS and JavaScript, SEO and structured data, and the GitHub Actions deployment.',
 			tech: ['HTML5', 'CSS3', 'Vanilla JS', 'Accessibility', 'Responsive Design', 'GitHub Actions', 'GitHub Pages'],
 			source: 'https://github.com/keshavprash/Keshav-Dev',
 			live: 'https://keshavprash.github.io/Keshav-Dev/',
@@ -581,6 +617,9 @@
 			fillParas('#pm-implementation', p.implementation);
 			fillList('#pm-demonstrates', p.demonstrates);
 
+			var roleEl = $('#pm-role');
+			if (roleEl) roleEl.textContent = p.role || '';
+
 			var tech = $('#pm-tech');
 			tech.textContent = '';
 			p.tech.forEach(function (t, i) { tech.appendChild(el('li', i === 0 ? 'tag tag--accent' : 'tag', t)); });
@@ -651,6 +690,7 @@
 
 		var openModal = function (key, trigger) {
 			if (!fill(key)) return;
+			track('project_view', { project: key, page: location.pathname });
 			lastFocused = trigger || doc.activeElement;
 			modal.hidden = false;
 			doc.body.classList.add('pm-open');
