@@ -215,6 +215,33 @@
 	if (form) {
 		var status = $('#form-status');
 		var EMAIL = form.getAttribute('data-email') || '';
+		// Set data-endpoint on the form to a form-to-email service (Formspree,
+		// Web3Forms, Basin) and enquiries post straight through, giving a real
+		// thank-you state and a conversion that can be counted. Left empty, the
+		// form keeps its original behaviour of composing the mail locally.
+		var endpoint = (form.getAttribute('data-endpoint') || '').trim();
+		var ACCESS_KEY = (form.getAttribute('data-access-key') || '').trim();   // Web3Forms only
+
+		// The note under the buttons describes the mail-app route; once a hosted
+		// endpoint exists that description is no longer true, so swap it.
+		var formNote = form.querySelector('.form-note');
+		if (endpoint && formNote) {
+			formNote.textContent = 'Your enquiry comes straight to my inbox — I reply with a plan and an estimate, usually within 24 hours. WhatsApp works just as well and carries the same details across.';
+		}
+
+		// A service page's "Get an estimate" button arrives as ?service=…#quote-form;
+		// pre-select that service so the visitor does not have to choose it twice.
+		// Set programmatically, so it does not count as form_start.
+		var wantedService = null;
+		try { wantedService = new URLSearchParams(location.search).get('service'); } catch (e) { /* older browsers: skip */ }
+		if (wantedService) {
+			var typeSelect = form.querySelector('[name="projectType"]');
+			if (typeSelect) {
+				Array.prototype.forEach.call(typeSelect.options, function (opt) {
+					if (opt.value === wantedService) typeSelect.value = wantedService;
+				});
+			}
+		}
 
 		// One reading of the form, shared by the email and WhatsApp routes, so the
 		// visitor never loses what they typed by choosing the other channel.
@@ -277,13 +304,10 @@
 			e.preventDefault();
 
 			var brief = readBrief();
-			// Set data-endpoint on the form to a form-to-email service (Formspree,
-			// Web3Forms, Basin) and enquiries post straight through, giving a real
-			// thank-you state and a conversion that can be counted. Left empty, the
-			// form keeps its original behaviour of composing the mail locally.
-			var endpoint = (form.getAttribute('data-endpoint') || '').trim();
 
 			if (!endpoint) {
+				// Counted as a lead *attempt* only: on a phone with no mail app nothing
+				// opens. Treat generate_lead as a conversion only when method is "form".
 				track('generate_lead', { method: 'email_client', project_type: brief.type || 'unspecified' });
 				mailtoFallback(brief);
 				return;
@@ -293,18 +317,34 @@
 			if (submitBtn) submitBtn.disabled = true;
 			say('Sending your enquiry…');
 
+			// One hidden honeypot field, never shown to people. Formspree drops any
+			// submission where _gotcha has a value; Web3Forms does the same for botcheck.
+			var honey = form.querySelector('[name="_gotcha"]');
+			var trapped = !!(honey && String(honey.value || '').trim());
+			var subject = 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '');
+
 			fetch(endpoint, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 				body: JSON.stringify({
+					access_key: ACCESS_KEY || undefined,          // Web3Forms; dropped by JSON.stringify when empty
 					name: brief.name, email: brief.email, phone: brief.phone,
 					company: brief.company, website: brief.website,
 					projectType: brief.type, budget: brief.budget, timeline: brief.timeline,
 					contactMethod: brief.contact, message: brief.message,
-					_subject: 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '')
+					page: location.pathname,
+					subject: subject,                             // Web3Forms
+					_subject: subject,                            // Formspree
+					_gotcha: trapped ? honey.value : undefined,   // Formspree honeypot
+					botcheck: trapped ? true : undefined          // Web3Forms honeypot
 				})
 			}).then(function (res) {
-				if (!res.ok) throw new Error('HTTP ' + res.status);
+				// Both services answer JSON; Web3Forms can report a failure inside a
+				// 200 body ({success:false}), so read it before deciding.
+				return res.json().catch(function () { return {}; }).then(function (data) {
+					if (!res.ok || data.success === false) throw new Error('HTTP ' + res.status);
+				});
+			}).then(function () {
 				form.reset();
 				say('Thanks — your enquiry is with me. I reply with a plan and an estimate, usually within 24 hours. If it is urgent, WhatsApp is faster.', 'ok');
 				track('generate_lead', { method: 'form', project_type: brief.type || 'unspecified', budget: brief.budget || 'unspecified' });

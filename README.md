@@ -250,10 +250,32 @@ untouched form the WhatsApp button keeps its plain greeting.
 To switch to a hosted form service instead (so submissions arrive without the visitor
 having a mail client set up):
 
-1. Sign up at [Formspree](https://formspree.io) or [Web3Forms](https://web3forms.com) and get an endpoint URL.
-2. In `index.html`, paste it into the empty `data-endpoint=""` attribute on `<form id="quote-form">`.
+1. Sign up at [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io).
+2. In `index.html`, on `<form id="quote-form">`:
+   - **Web3Forms:** set `data-endpoint="https://api.web3forms.com/submit"` and paste the access key
+     into `data-access-key=""` (it is sent as `access_key` in the JSON body; a Web3Forms key only
+     lets people submit this form, which is why it can live in public HTML).
+   - **Formspree:** set `data-endpoint="https://formspree.io/f/XXXXXXXX"` and leave `data-access-key` empty.
 3. That is all — `js/main.js` already posts JSON to `data-endpoint` when it is set, shows a thank-you
-   state, fires a `generate_lead` event, and falls back to the `mailto:` route if the request fails.
+   state, swaps the note under the buttons, fires `generate_lead` with `method: form`, and falls back
+   to the `mailto:` route if the request fails or the service answers `success: false`.
+
+The form also carries a hidden `_gotcha` honeypot: people never see it, and a submission where it
+has a value is sent with `_gotcha` (Formspree) and `botcheck: true` (Web3Forms) so the service
+drops it.
+
+**Landing on the form.** Every CTA whose label promises a quote or an estimate — the sticky bar,
+the mobile-menu button, the closing CTA bands, the service cards, the footer link and the
+per-service buttons on `/services/` — links to `#quote-form` (the form element) rather than
+`#contact` (the section), so on a phone the visitor lands on the first field instead of above the
+six contact cards. Buttons that name a service pass it as `?service=Business%20Website#quote-form`;
+`main.js` pre-selects it in the "What do you need?" dropdown (programmatically, so it does not
+count as `form_start`). Canonical tags already point every such URL at the bare page.
+
+**WhatsApp prefill.** Each page's `wa.me` links open with a page-specific first line ("…looking at
+your web development services…", "…read your AI web development page…") followed by a
+three-line brief template — *What I need / Current website (if any) / Result I want* — so the
+first message already says which page produced it and what the prospect wants.
 
 ### Conversion events
 
@@ -263,9 +285,9 @@ carrying an account id. Nothing is sent anywhere until analytics is actually ins
 
 | Event | When | Parameters |
 | --- | --- | --- |
-| `contact_click` | Any element with `data-cta` is clicked | `method` (whatsapp, email, phone, cv_download, github, linkedin), `location` (page, sticky, footer), `page` |
+| `contact_click` | Any element with `data-cta` is clicked | `method` (whatsapp, email, phone, cv_download, github, linkedin), `location` (page, hero, sticky, footer), `page` |
 | `form_start` | First keystroke or selection in the enquiry form | `page` |
-| `generate_lead` | Form submitted | `method` (form or email_client), `project_type`, `budget` |
+| `generate_lead` | Form submitted. `method: form` = accepted by the hosted endpoint (a real enquiry); `method: email_client` = the `mailto:` route was opened, which on a phone without a mail app delivers nothing — count only `form` as a conversion | `method` (form or email_client), `project_type`, `budget` |
 | `form_error` | Hosted endpoint failed; mail fallback used | `project_type` |
 | `project_view` | A project case-study modal is opened | `project`, `page` |
 
