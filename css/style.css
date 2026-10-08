@@ -13,6 +13,28 @@
 
 /* 1. Tokens & theme ------------------------------------------------------ */
 
+/* Inter is self-hosted (SIL Open Font License) instead of loaded from Google Fonts:
+   that removed a render-blocking third-party stylesheet and two extra connections
+   from the critical path. One variable file covers weights 400–800. The rupee sign
+   sits outside the latin subset, so it gets its own 2 KB file, fetched only on
+   pages that print a price. */
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400 800;
+	font-display: swap;
+	src: url("../fonts/inter-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 400 800;
+	font-display: swap;
+	src: url("../fonts/inter-rupee.woff2") format("woff2");
+	unicode-range: U+20B9;
+}
+
 /* Inter arrives over the network with font-display:swap, so the browser paints
    the fallback first and reflows every line when Inter lands. Metric overrides
    make the local fallback occupy the same space as Inter, so the swap is
@@ -491,6 +513,8 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 }
 
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+.hero-sub { margin: -16px 0 26px; font-size: .92rem; color: var(--text-muted); }
+.hero-sub a, .hero-meta a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
 .hero-meta {
 	display: flex;
@@ -892,6 +916,9 @@ html[data-theme="light"] .project-media::after {
 .mini-list .t { font-weight: 620; font-size: .95rem; color: var(--text); }
 .mini-list .s { font-size: .85rem; color: var(--text-muted); }
 .mini-list .d { font-size: .78rem; color: var(--text-dim); }
+.price-list li { grid-template-columns: 1fr auto; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.price-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.price-list .d { font-size: 1rem; font-weight: 700; color: var(--accent-text); text-align: right; }
 
 /* 6.7 About */
 .about-grid {
@@ -1188,9 +1215,19 @@ html[data-theme="light"] .project-media::after {
 	opacity: 0;
 	transform: translateY(18px);
 	transition: opacity .6s cubic-bezier(.22, .61, .36, 1), transform .6s cubic-bezier(.22, .61, .36, 1);
-	will-change: opacity, transform;
 }
 [data-reveal].is-in { opacity: 1; transform: none; }
+/* Never hide what is above the fold: content at opacity 0 does not count as
+   painted, so a revealed hero held First Contentful Paint and LCP hostage to the
+   deferred script. Hero markup no longer carries data-reveal; this is the guard
+   for any that is added back. */
+.hero [data-reveal], .page-hero [data-reveal] { opacity: 1; transform: none; transition: none; }
+
+/* Layout was the largest main-thread cost on a phone. Sections below the first
+   one skip layout and paint until they approach the viewport; "auto" makes the
+   browser remember each real height once seen. In-page links (#quote-form,
+   #faq, #work) were tested to still land exactly under the header. */
+main > .section ~ .section, .site-footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
@@ -1593,7 +1630,9 @@ body.pm-open { overflow: hidden; }
 	flex-wrap: wrap;
 	align-items: center;
 	gap: 6px;
-	margin-bottom: 18px;
+	margin: 0 0 18px;
+	padding: 0;
+	list-style: none;
 	font-size: .82rem;
 	color: var(--text-dim);
 }

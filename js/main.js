@@ -5,6 +5,18 @@
 (function () {
 	'use strict';
 
+	/* -------------------------------------------------------------- Config */
+	// The only three values to set when the services exist. All empty = the site
+	// works exactly as before: the form composes an email locally, no analytics load.
+	//
+	// FORM_ENDPOINT    Web3Forms: 'https://api.web3forms.com/submit' (plus FORM_ACCESS_KEY,
+	//                  which Web3Forms designs to be public), or Formspree:
+	//                  'https://formspree.io/f/<your-form-id>'. Never put a secret here.
+	// GA4_ID           A GA4 measurement id ('G-XXXXXXXXXX') from your own property.
+	var FORM_ENDPOINT = '';
+	var FORM_ACCESS_KEY = '';
+	var GA4_ID = '';
+
 	var doc = document;
 	var root = doc.documentElement;
 	var $ = function (sel, ctx) { return (ctx || doc).querySelector(sel); };
@@ -22,15 +34,30 @@
 	}
 
 	/* ------------------------------------------------------------ Tracking */
-	// Conversion signals, emitted in two forms and depending on neither:
+	// Conversion signals, emitted in up to three forms and depending on none:
+	//   * gtag('event') when GA4_ID is set above
 	//   * a dataLayer push, picked up by Google Tag Manager if it is ever installed
 	//   * a DOM CustomEvent, for anything else that wants to listen
-	// Nothing here loads a third-party script or carries an account id, so the
-	// site behaves identically whether or not analytics is ever added.
+	// Event parameters never carry what a visitor typed — no names, emails,
+	// phone numbers or messages — only the route, the page and the service type.
+	if (GA4_ID && /^G-[A-Z0-9]+$/.test(GA4_ID)) {
+		window.dataLayer = window.dataLayer || [];
+		window.gtag = function () { window.dataLayer.push(arguments); };
+		window.gtag('js', new Date());
+		window.gtag('config', GA4_ID);
+		var ga = doc.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
+		doc.head.appendChild(ga);
+	}
+
 	function track(name, detail) {
 		var payload = detail || {};
 		try {
-			if (window.dataLayer && typeof window.dataLayer.push === 'function') {
+			if (typeof window.gtag === 'function') window.gtag('event', name, payload);
+		} catch (e) { /* analytics must never break the page */ }
+		try {
+			if (window.dataLayer && typeof window.dataLayer.push === 'function' && typeof window.gtag !== 'function') {
 				var d = { event: name };
 				for (var k in payload) { if (Object.prototype.hasOwnProperty.call(payload, k)) d[k] = payload[k]; }
 				window.dataLayer.push(d);
@@ -41,17 +68,28 @@
 		} catch (e) { /* older browsers: the dataLayer push above still ran */ }
 	}
 
-	// Every outbound contact route is tagged in the markup with data-cta, so a
-	// tag manager can bind to it by selector without this file changing again.
+	// Every outbound contact route is tagged in the markup with data-cta; links to
+	// the quote form count as cta_click whether or not they are tagged.
+	var CTA_EVENTS = {
+		whatsapp: 'whatsapp_click', email: 'email_click', phone: 'phone_click',
+		cv_download: 'cv_click', quote: 'cta_click',
+		github: 'profile_click', linkedin: 'profile_click', instagram: 'profile_click'
+	};
 	doc.addEventListener('click', function (e) {
-		var el = e.target && e.target.closest ? e.target.closest('[data-cta]') : null;
+		if (!e.target || !e.target.closest) return;
+		var el = e.target.closest('[data-cta], a[href$="#quote-form"], a[href$="#contact"]');
 		if (!el) return;
-		track('contact_click', {
-			method: el.getAttribute('data-cta'),
+		var method = el.getAttribute('data-cta') || 'quote';
+		track(CTA_EVENTS[method] || 'cta_click', {
+			method: method,
 			location: el.getAttribute('data-cta-location') || 'page',
 			page: location.pathname
 		});
 	});
+
+	// Landing-page views worth their own event (jaipur_page_view, service_view).
+	var viewEvent = doc.body && doc.body.getAttribute('data-track-view');
+	if (viewEvent) track(viewEvent, { page: location.pathname });
 
 	function applyTheme(theme) {
 		root.setAttribute('data-theme', theme);
@@ -215,12 +253,12 @@
 	if (form) {
 		var status = $('#form-status');
 		var EMAIL = form.getAttribute('data-email') || '';
-		// Set data-endpoint on the form to a form-to-email service (Formspree,
-		// Web3Forms, Basin) and enquiries post straight through, giving a real
-		// thank-you state and a conversion that can be counted. Left empty, the
-		// form keeps its original behaviour of composing the mail locally.
-		var endpoint = (form.getAttribute('data-endpoint') || '').trim();
-		var ACCESS_KEY = (form.getAttribute('data-access-key') || '').trim();   // Web3Forms only
+		// FORM_ENDPOINT (see Config) set to a form-to-email service makes enquiries
+		// post straight through, with a real thank-you state and a countable
+		// conversion. Left empty, the form composes the mail locally.
+		var endpoint = FORM_ENDPOINT.trim();
+		var ACCESS_KEY = FORM_ACCESS_KEY.trim();   // Web3Forms only
+		var WA_NUMBER = '917633853037';
 
 		// The note under the buttons describes the mail-app route; once a hosted
 		// endpoint exists that description is no longer true, so swap it.
@@ -252,7 +290,7 @@
 				name: get('name'), email: get('email'), phone: get('phone'),
 				company: get('company'), website: get('website'),
 				type: get('projectType'), budget: get('budget'),
-				timeline: get('timeline'), contact: get('contactMethod'),
+				contact: get('contactMethod'),
 				message: get('message')
 			};
 		};
@@ -266,7 +304,6 @@
 				'Current website: ' + (b.website || 'Not provided'),
 				'Project type: ' + (b.type || 'Not specified'),
 				'Budget range: ' + (b.budget || 'Not specified'),
-				'Timeline: ' + (b.timeline || 'Not specified'),
 				'Preferred reply: ' + (b.contact || 'Email'),
 				'',
 				'Project details:',
@@ -274,9 +311,28 @@
 			];
 		};
 
-		var say = function (msg, tone) {
+		var waLinkFor = function (b) {
+			var text = 'Hi Keshav, I found your portfolio and want to discuss a website/web application project.\n\n' + briefLines(b).join('\n');
+			return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+		};
+
+		// waBrief: when given, the message ends with a link that sends the same brief
+		// over WhatsApp — the dependable route on a phone with no mail app set up.
+		var say = function (msg, tone, waBrief) {
 			if (!status) return;
 			status.textContent = msg;
+			if (waBrief) {
+				var a = doc.createElement('a');
+				a.href = waLinkFor(waBrief);
+				a.target = '_blank';
+				a.rel = 'noopener';
+				a.setAttribute('data-cta', 'whatsapp');
+				a.setAttribute('data-cta-location', 'form_fallback');
+				a.textContent = 'Send it on WhatsApp instead';
+				status.appendChild(doc.createTextNode(' '));
+				status.appendChild(a);
+				status.appendChild(doc.createTextNode('.'));
+			}
 			status.classList.add('is-visible');
 			status.classList.toggle('is-error', tone === 'error');
 			status.classList.toggle('is-ok', tone === 'ok');
@@ -287,8 +343,22 @@
 			window.location.href = 'mailto:' + EMAIL +
 				'?subject=' + encodeURIComponent(subject) +
 				'&body=' + encodeURIComponent(briefLines(brief).join('\n'));
-			say('Opening your email app with the message ready to send. If nothing opens, email ' + EMAIL + ' directly or message on WhatsApp.');
+			say('Your email app should open with the message ready to send — press Send there. If nothing opened, email ' + EMAIL + ' directly, or', null, brief);
 		};
+
+		// Asking for a WhatsApp reply or a call without leaving a number is a lead
+		// that cannot be answered, so the number becomes required for those two.
+		var replySelect = form.querySelector('[name="contactMethod"]');
+		var phoneInput = form.querySelector('[name="phone"]');
+		var phoneHint = $('#f-phone-hint');
+		var syncPhoneRequired = function () {
+			if (!replySelect || !phoneInput) return;
+			var needed = replySelect.value === 'WhatsApp' || replySelect.value === 'Phone call';
+			phoneInput.required = needed;
+			if (phoneHint) phoneHint.textContent = needed ? '(required for a ' + (replySelect.value === 'WhatsApp' ? 'WhatsApp' : 'phone') + ' reply)' : '(optional)';
+		};
+		if (replySelect) replySelect.addEventListener('change', syncPhoneRequired);
+		syncPhoneRequired();
 
 		// Counted once per page view: how many people start the form vs. finish it.
 		var formStarted = false;
@@ -307,8 +377,8 @@
 
 			if (!endpoint) {
 				// Counted as a lead *attempt* only: on a phone with no mail app nothing
-				// opens. Treat generate_lead as a conversion only when method is "form".
-				track('generate_lead', { method: 'email_client', project_type: brief.type || 'unspecified' });
+				// opens. Only form_submit_success (a hosted endpoint) is a confirmed lead.
+				track('form_submit_mailto', { project_type: brief.type || 'unspecified', page: location.pathname });
 				mailtoFallback(brief);
 				return;
 			}
@@ -330,7 +400,7 @@
 					access_key: ACCESS_KEY || undefined,          // Web3Forms; dropped by JSON.stringify when empty
 					name: brief.name, email: brief.email, phone: brief.phone,
 					company: brief.company, website: brief.website,
-					projectType: brief.type, budget: brief.budget, timeline: brief.timeline,
+					projectType: brief.type, budget: brief.budget,
 					contactMethod: brief.contact, message: brief.message,
 					page: location.pathname,
 					subject: subject,                             // Web3Forms
@@ -346,13 +416,15 @@
 				});
 			}).then(function () {
 				form.reset();
+				syncPhoneRequired();
 				say('Thanks — your enquiry is with me. I reply with a plan and an estimate, usually within 24 hours. If it is urgent, WhatsApp is faster.', 'ok');
+				track('form_submit_success', { project_type: brief.type || 'unspecified', page: location.pathname });
 				track('generate_lead', { method: 'form', project_type: brief.type || 'unspecified', budget: brief.budget || 'unspecified' });
 			}).catch(function () {
 				// Never lose an enquiry to a failed request: hand it to the mail client.
 				say('That did not send — opening your email app with the details instead, so nothing is lost.', 'error');
 				setTimeout(function () { mailtoFallback(brief); }, 900);
-				track('form_error', { project_type: brief.type || 'unspecified' });
+				track('form_submit_error', { project_type: brief.type || 'unspecified', page: location.pathname });
 			}).then(function () {
 				if (submitBtn) submitBtn.disabled = false;
 			});
@@ -366,9 +438,7 @@
 			waBtn.addEventListener('click', function () {
 				var b = readBrief();
 				if (!b.name && !b.message && !b.type) return;   // nothing typed — keep the default text
-				var intro = 'Hi Keshav, I would like to discuss a project.';
-				var text = intro + '\n\n' + briefLines(b).join('\n');
-				waBtn.setAttribute('href', waBase + '?text=' + encodeURIComponent(text));
+				waBtn.setAttribute('href', waLinkFor(b).replace(/^https:\/\/wa\.me\/\d+/, waBase));
 			});
 		}
 
@@ -554,7 +624,7 @@
 				'Continuous deployment to GitHub Pages via GitHub Actions.'
 			],
 			implementation: [
-				'The only external request is the Inter webfont; everything else is served from the repository. Images are WebP with a JPEG fallback in a picture element, lazy-loaded below the fold and given explicit dimensions so nothing shifts as they arrive.',
+				'Nothing loads from a third party — even the Inter webfont is self-hosted and preloaded, and nothing above the fold waits for JavaScript to appear. Images are WebP (with responsive 800px versions) and a JPEG fallback in a picture element, lazy-loaded below the fold and given explicit dimensions so nothing shifts as they arrive.',
 				'The stylesheet is built on custom properties, so the light and dark themes are one set of variables rather than two stylesheets. Reveals and scroll-spy use IntersectionObserver instead of scroll handlers, and every animation is disabled under prefers-reduced-motion.',
 				'The project modal is vanilla JavaScript: it traps focus, closes on Escape or a backdrop click, restores focus to the button that opened it, and moves the gallery with the arrow keys. GitHub Actions publishes the site on every push to main.'
 			],
@@ -584,9 +654,20 @@
 	if (modal) {
 		var dialog = $('.pm-dialog', modal);
 		var scroller = $('.pm-scroll', modal);
-		var stageSrc = $('#pm-stage-src');
-		var stageImg = $('#pm-stage-img');
 		var stageCap = $('#pm-stage-cap');
+		// Built on first open rather than shipped empty, so the page never contains an
+		// <img> without a src (which validators and audits report as a broken image).
+		var stageSrc = doc.createElement('source');
+		stageSrc.type = 'image/webp';
+		var stageImg = doc.createElement('img');
+		stageImg.width = 1600;
+		stageImg.height = 1000;
+		stageImg.alt = '';
+		stageImg.decoding = 'async';
+		var stagePic = doc.createElement('picture');
+		stagePic.appendChild(stageSrc);
+		stagePic.appendChild(stageImg);
+		var stageFig = $('.pm-stage', modal);
 		var stageCount = $('#pm-count');
 		var thumbsBox = $('#pm-thumbs');
 		var prevBtn = $('.pm-arrow--prev', modal);
@@ -619,8 +700,10 @@
 			if (!shot) return;
 			index = i;
 			var base = IMG + project.dir + '/' + shot[0];
-			stageSrc.setAttribute('srcset', base + '.webp');
+			stageSrc.setAttribute('srcset', base + '-800.webp 800w, ' + base + '.webp 1600w');
+			stageSrc.setAttribute('sizes', '(max-width: 1100px) 100vw, 1080px');
 			stageImg.setAttribute('src', base + '.jpg');
+			if (stageFig && !stagePic.parentNode) stageFig.insertBefore(stagePic, stageFig.firstChild);
 			// the visible <figcaption> carries the description, so the image is decorative here
 			stageImg.setAttribute('alt', '');
 			stageCap.textContent = shot[1] + ' — ' + shot[2];
@@ -692,7 +775,7 @@
 				b.type = 'button';
 				var pic = doc.createElement('picture');
 				var s = doc.createElement('source');
-				s.setAttribute('srcset', IMG + p.dir + '/' + shot[0] + '.webp');
+				s.setAttribute('srcset', IMG + p.dir + '/' + shot[0] + '-400.webp');   // thumbnails render 132px wide
 				s.type = 'image/webp';
 				var im = doc.createElement('img');
 				im.alt = '';

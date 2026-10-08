@@ -1,5 +1,12 @@
 # robots.txt — https://keshavprash.github.io/Keshav-Dev/
 # Portfolio of Keshav Prashar — React.js & MERN Full Stack Developer, Jaipur, India
+#
+# NOTE: crawlers only read robots.txt at the root of a host
+# (https://keshavprash.github.io/robots.txt). This project site lives under
+# /Keshav-Dev/, so this file is NOT what Google reads, and the Sitemap line
+# below is not how Google discovers the sitemap. The sitemap must be submitted
+# in Search Console (or referenced from a robots.txt in a keshavprash.github.io
+# user-site repository). Kept for tools that look for it here.
 
 User-agent: *
 Allow: /

@@ -16,7 +16,7 @@ Built as a hand-written static site — no frameworks, no build step, no depende
 - Project case studies — the goal, key features, technical implementation and what each demonstrates
 - Project galleries — 17 interface screens with thumbnails, prev/next, keyboard and touch navigation
 - Freelance services with starting prices and per-service enquiry CTAs
-- Contact inquiry form (name, email, company, current website, project type, budget, timeline, phone, preferred reply channel, message)
+- Contact inquiry form (name, email, company, current website, project type, budget, preferred reply channel, phone, message) on the home page and on `/website-developer-jaipur/`
 - Sticky WhatsApp / Get-a-Free-Quote bar on phones (under 640px), hidden while the menu, a project modal or the contact form is on screen
 - Custom `404.html` that keeps lost visitors on the site (noindex, absolute `/Keshav-Dev/` paths)
 - SEO metadata — canonical URL, Open Graph, Twitter cards and a JSON-LD `@graph`
@@ -37,7 +37,7 @@ Built as a hand-written static site — no frameworks, no build step, no depende
 | Images | WebP with JPEG fallbacks via `<picture>`, lazy loading below the fold |
 | Deployment | GitHub Pages via GitHub Actions (`.github/workflows/static.yml`) |
 
-Nothing is loaded from a CDN except the Inter webfont from Google Fonts.
+Nothing is loaded from a CDN. The Inter webfont is self-hosted in `fonts/` (SIL Open Font License): one variable latin file for weights 400–800, plus a 2 KB file holding only the rupee sign.
 
 ---
 
@@ -200,7 +200,7 @@ Everything is in `index.html`, in the order it appears on the page. The most com
 | Process steps | `<section id="process">` |
 | Contact details & form | `<section id="contact">` |
 | FAQ answers | `<section id="faq">` |
-| CV link | the **Download CV** button in the About section |
+| CV link | the About section button — currently "Full work history on LinkedIn", because the old Google Drive CV answered 401 (private). Put a reviewed PDF at `cv/` or a public CV URL there to restore a CV download |
 
 Colours, spacing, radii and fonts are all CSS custom properties at the top of
 `css/style.css` (`:root` for dark, `html[data-theme="light"]` for light).
@@ -240,9 +240,12 @@ All of its content is written with `textContent` / `createElement`, so nothing i
 
 ## The contact form
 
-The form has no backend. On submit it builds a pre-filled `mailto:` message
-(name, email, phone, company, current website, project type, budget, timeline, preferred reply
-channel, details) and opens the visitor's mail app.
+The form has no backend until one is configured. On submit it builds a pre-filled `mailto:` message
+(name, email, phone, company, current website, project type, budget, preferred reply channel,
+details), opens the visitor's mail app, and shows a "Send it on WhatsApp instead" link carrying the
+same brief — the dependable route on a phone with no mail app. Without JavaScript the form's own
+`action="mailto:…"` does the same job instead of reloading the page with the details in the URL.
+Choosing *WhatsApp* or *Phone call* as the reply method makes the phone number required.
 The WhatsApp button next to it sends the **same** brief — `readBrief()` and `briefLines()` in
 `js/main.js` are shared by both routes, so switching channel never loses what was typed. With an
 untouched form the WhatsApp button keeps its plain greeting.
@@ -251,14 +254,14 @@ To switch to a hosted form service instead (so submissions arrive without the vi
 having a mail client set up):
 
 1. Sign up at [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io).
-2. In `index.html`, on `<form id="quote-form">`:
-   - **Web3Forms:** set `data-endpoint="https://api.web3forms.com/submit"` and paste the access key
-     into `data-access-key=""` (it is sent as `access_key` in the JSON body; a Web3Forms key only
-     lets people submit this form, which is why it can live in public HTML).
-   - **Formspree:** set `data-endpoint="https://formspree.io/f/XXXXXXXX"` and leave `data-access-key` empty.
-3. That is all — `js/main.js` already posts JSON to `data-endpoint` when it is set, shows a thank-you
-   state, swaps the note under the buttons, fires `generate_lead` with `method: form`, and falls back
-   to the `mailto:` route if the request fails or the service answers `success: false`.
+2. In the **Config** block at the top of `js/main.js` (one place, used by every page with the form):
+   - **Web3Forms:** `FORM_ENDPOINT = 'https://api.web3forms.com/submit'` and paste the access key into
+     `FORM_ACCESS_KEY` (it is sent as `access_key`; a Web3Forms key only lets people submit this
+     form, which is why Web3Forms designs it to live in public code).
+   - **Formspree:** `FORM_ENDPOINT = 'https://formspree.io/f/XXXXXXXX'` and leave `FORM_ACCESS_KEY` empty.
+3. That is all — `js/main.js` then posts JSON to the endpoint, shows a thank-you state, swaps the
+   note under the buttons, fires `form_submit_success` + `generate_lead` (`method: form`), and falls
+   back to the `mailto:` route (firing `form_submit_error`) if the request fails.
 
 The form also carries a hidden `_gotcha` honeypot: people never see it, and a submission where it
 has a value is sent with `_gotcha` (Formspree) and `botcheck: true` (Web3Forms) so the service
@@ -279,17 +282,23 @@ first message already says which page produced it and what the prospect wants.
 
 ### Conversion events
 
-`js/main.js` emits every conversion signal twice — as a `window.dataLayer.push({event: …})` for a tag
-manager, and as a DOM `CustomEvent` named `kp:<event>` — without loading any third-party script or
-carrying an account id. Nothing is sent anywhere until analytics is actually installed.
+`js/main.js` emits every conversion signal as a DOM `CustomEvent` named `kp:<event>`, plus a
+`window.dataLayer.push({event: …})` for a tag manager. Set `GA4_ID` in the Config block to your own
+GA4 measurement id (`G-…`) and the same events go to Google Analytics via `gtag`. Left empty,
+no third-party script loads and nothing is sent anywhere. Mark `generate_lead` (or
+`form_submit_success`) and `whatsapp_click` as key events in GA4.
 
 | Event | When | Parameters |
 | --- | --- | --- |
-| `contact_click` | Any element with `data-cta` is clicked | `method` (whatsapp, email, phone, cv_download, github, linkedin), `location` (page, hero, sticky, footer), `page` |
+| `whatsapp_click`, `email_click`, `phone_click`, `cv_click` | A link tagged `data-cta` with that route is clicked | `method`, `location` (hero, sticky, footer, projects, pricing, form_fallback…), `page` |
+| `profile_click` | GitHub, LinkedIn or Instagram link clicked | `method`, `location`, `page` |
+| `cta_click` | Any link to `#quote-form` / `#contact` (or `data-cta="quote"`) is clicked | `method`, `location`, `page` |
 | `form_start` | First keystroke or selection in the enquiry form | `page` |
-| `generate_lead` | Form submitted. `method: form` = accepted by the hosted endpoint (a real enquiry); `method: email_client` = the `mailto:` route was opened, which on a phone without a mail app delivers nothing — count only `form` as a conversion | `method` (form or email_client), `project_type`, `budget` |
-| `form_error` | Hosted endpoint failed; mail fallback used | `project_type` |
+| `form_submit_mailto` | Form submitted with no endpoint configured — the mail app was asked to open (an attempt, not a confirmed lead) | `project_type`, `page` |
+| `form_submit_success` / `generate_lead` | Hosted endpoint accepted the enquiry — a real lead | `project_type`, `page` / `method`, `budget` |
+| `form_submit_error` | Hosted endpoint failed; mail fallback used | `project_type`, `page` |
 | `project_view` | A project case-study modal is opened | `project`, `page` |
+| `jaipur_page_view`, `service_view` | The Jaipur landing page / services page loads (`data-track-view` on `<body>`) | `page` |
 
 No personal data (names, emails, phone numbers, message text) is ever included in an event.
 

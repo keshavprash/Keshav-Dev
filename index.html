@@ -41,10 +41,8 @@
 	<link rel="icon" type="image/jpeg" href="images/kp.jpg">
 	<link rel="apple-touch-icon" href="images/kp.jpg">
 
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="preload" as="image" type="image/webp" href="images/keshav-portrait.webp">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<link rel="preload" as="image" type="image/webp" href="images/keshav-portrait.webp" fetchpriority="high">
+	<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 	<link rel="stylesheet" href="css/style.css">
 
 	<!-- Every section is revealed by JS. If JS never runs, show the page rather than a blank one. -->
@@ -649,7 +647,7 @@
 		<section class="hero" id="top">
 			<div class="container">
 				<div class="hero-grid">
-					<div class="hero-copy" data-reveal>
+					<div class="hero-copy">
 						<p class="availability"><span class="dot" aria-hidden="true"></span> Available for freelance projects worldwide</p>
 
 						<h1>
@@ -668,25 +666,29 @@
 						</p>
 
 						<div class="hero-cta">
-							<a class="btn btn--primary" href="#work">
-								View My Work
+							<a class="btn btn--primary" href="#quote-form" data-cta="quote" data-cta-location="hero">
+								Get a Free Quote
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
 							</a>
-							<a class="btn btn--ghost" href="#contact">Start a Project</a>
+							<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%20found%20your%20portfolio%20and%20want%20to%20discuss%20a%20website%2Fweb%20application%20project.%0A%0AWhat%20I%20need%3A%20%0ACurrent%20website%20%28if%20any%29%3A%20" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="hero">
+								<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+								WhatsApp Me
+							</a>
 						</div>
+						<p class="hero-sub">Or <a href="#work">see the projects I've shipped</a> first.</p>
 
 						<ul class="hero-meta">
 							<li>
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.8"/></svg>
-								Remote projects, India &amp; worldwide
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12M6 8h12M8 12h8M10 20l6-8H8"/></svg>
+								Websites from ₹7,000 · web apps from ₹20,000
 							</li>
 							<li>
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg>
 								1+ year production experience
 							</li>
 							<li>
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.8 3.8 9S14.5 21.3 12 21c-2.5-.3-3.8-5.8-3.8-9S9.5 5.7 12 3z"/></svg>
-								Based in Jaipur, working remotely
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.8"/></svg>
+								<span>Based in <a href="website-developer-jaipur/">Jaipur</a> — clients across India &amp; worldwide</span>
 							</li>
 							<li>
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
@@ -695,12 +697,12 @@
 						</ul>
 					</div>
 
-					<div class="hero-visual" data-reveal data-reveal-delay="120">
+					<div class="hero-visual">
 						<figure class="portrait-frame" style="margin:0">
 							<picture>
 								<source srcset="images/keshav-portrait.webp" type="image/webp">
 								<img src="images/keshav-portrait.jpg" width="760" height="760"
-									alt="Portrait of Keshav Prashar, React.js and MERN stack developer" fetchpriority="high" decoding="async">
+									alt="Portrait of Keshav Prashar, React.js and MERN stack developer" fetchpriority="high">
 							</picture>
 						</figure>
 						<div class="floating-badge">
@@ -951,7 +953,7 @@
 						<button class="project-media" type="button" data-open-project="ai-interview"
 							aria-label="Open the AI Interview Preparation Platform gallery">
 							<picture>
-								<source srcset="images/projects/ai-interview/dashboard.webp" type="image/webp">
+								<source srcset="images/projects/ai-interview/dashboard-800.webp 800w, images/projects/ai-interview/dashboard.webp 1600w" sizes="(max-width: 1024px) calc(100vw - 48px), 600px" type="image/webp">
 								<img src="images/projects/ai-interview/dashboard.jpg" width="1600" height="1000" loading="lazy" decoding="async"
 									alt="Interface preview of the AI Interview Preparation Platform dashboard: overall preparation score, ATS resume score, mock interview and coding assessment progress, a performance trend chart and a list of recent mock interviews.">
 							</picture>
@@ -1011,7 +1013,7 @@
 							<button class="project-media" type="button" data-open-project="employee-task"
 								aria-label="Open the Employee Task Management System gallery">
 								<picture>
-									<source srcset="images/projects/employee-task/dashboard.webp" type="image/webp">
+									<source srcset="images/projects/employee-task/dashboard-800.webp 800w, images/projects/employee-task/dashboard.webp 1600w" sizes="(max-width: 1024px) calc(100vw - 48px), 600px" type="image/webp">
 									<img src="images/projects/employee-task/dashboard.jpg" width="1600" height="1000" loading="lazy" decoding="async"
 										alt="Interface preview of the Employee Task Management admin dashboard: total employees, active, completed and pending task counts, a task throughput chart, a task status breakdown and a recent task table.">
 								</picture>
@@ -1062,7 +1064,7 @@
 							<button class="project-media" type="button" data-open-project="space-shooter"
 								aria-label="Open the Space Shooter gallery">
 								<picture>
-									<source srcset="images/projects/space-shooter/game.webp" type="image/webp">
+									<source srcset="images/projects/space-shooter/game-800.webp 800w, images/projects/space-shooter/game.webp 1600w" sizes="(max-width: 1024px) calc(100vw - 48px), 600px" type="image/webp">
 									<img src="images/projects/space-shooter/game.jpg" width="1600" height="1000" loading="lazy" decoding="async"
 										alt="Interface preview of the Space Shooter browser game: a starfield play area with the player ship, enemy waves, projectiles and explosions, a score and wave HUD, shield and lives readouts and a live leaderboard panel.">
 								</picture>
@@ -1112,7 +1114,7 @@
 						<button class="project-media" type="button" data-open-project="portfolio"
 							aria-label="Open the portfolio gallery">
 							<picture>
-								<source srcset="images/projects/portfolio/portfolio-preview.webp" type="image/webp">
+								<source srcset="images/projects/portfolio/portfolio-preview-800.webp 800w, images/projects/portfolio/portfolio-preview.webp 1600w" sizes="(max-width: 1024px) calc(100vw - 48px), 600px" type="image/webp">
 								<img src="images/projects/portfolio/portfolio-preview.jpg" width="1600" height="1000" loading="lazy" decoding="async"
 									alt="Screenshot of this portfolio: the hero section with the availability badge, name, role, introduction, View My Work and Hire Me buttons, and the stats strip below.">
 							</picture>
@@ -1165,9 +1167,10 @@
 				</p>
 
 				<div class="section-cta" data-reveal>
-					<a class="btn btn--primary" href="#contact">Discuss a Similar Project
+					<a class="btn btn--primary" href="#quote-form" data-cta="quote" data-cta-location="projects">Get a Quote for a Similar Project
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
 					</a>
+					<a class="btn btn--wa" href="https://wa.me/917633853037?text=Hi%20Keshav%2C%20I%20saw%20the%20projects%20on%20your%20portfolio%20and%20want%20to%20discuss%20something%20similar%20for%20my%20business.%0A%0AWhat%20I%20need%3A%20" target="_blank" rel="noopener" data-cta="whatsapp" data-cta-location="projects"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.84c0 1.74.46 3.44 1.32 4.94L2.05 22l5.35-1.4a9.8 9.8 0 0 0 4.64 1.18h.01c5.43 0 9.84-4.4 9.84-9.84 0-2.63-1.02-5.1-2.88-6.96A9.78 9.78 0 0 0 12.04 2zm0 17.94h-.01a8.2 8.2 0 0 1-4.16-1.14l-.3-.18-3.1.81.83-3.02-.2-.31a8.14 8.14 0 0 1-1.25-4.36c0-4.52 3.68-8.19 8.2-8.19a8.14 8.14 0 0 1 5.79 2.4 8.13 8.13 0 0 1 2.4 5.8c0 4.52-3.68 8.19-8.2 8.19zm4.5-6.13c-.25-.13-1.46-.72-1.68-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.04-.39-1.98-1.22-.73-.65-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.16 0-.43.06-.65.31s-.85.83-.85 2.02.87 2.34.99 2.5c.12.17 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.19 1.11.16 1.53.1.47-.07 1.46-.6 1.66-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg> WhatsApp Me</a>
 					<a class="btn btn--ghost" href="https://github.com/keshavprash" target="_blank" rel="noopener" data-cta="github">Read the source on GitHub</a>
 				</div>
 			</div>
@@ -1479,9 +1482,11 @@
 
 						<div class="hero-cta" style="margin-bottom:0">
 							<a class="btn btn--primary" href="#contact">Start a Project</a>
-							<a class="btn btn--ghost" href="https://drive.google.com/file/d/168f3Vl1Ovfl6v-AZoG8Cg34N88siJEzO/view?usp=drivesdk" target="_blank" rel="noopener" data-cta="cv_download">
-								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7.5 10.5L12 15l4.5-4.5M4.5 20h15"/></svg>
-								Download CV
+							<!-- The CV used to link to a Google Drive file that answered 401 (private) to
+							     every visitor. Until a public CV exists, point to the full work history. -->
+							<a class="btn btn--ghost" href="https://www.linkedin.com/in/keshav-prashar-9277b2256" target="_blank" rel="noopener" data-cta="linkedin" data-cta-location="about">
+								<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM21 13.9c0-3.4-1.82-4.98-4.24-4.98-1.96 0-2.83 1.08-3.32 1.83V8.5H10.1c.04.95 0 12.5 0 12.5h3.34v-6.98c0-.3.02-.6.11-.82.24-.6.79-1.22 1.72-1.22 1.21 0 1.7.92 1.7 2.28V21H21v-7.1z"/></svg>
+								Full work history on LinkedIn
 							</a>
 						</div>
 					</div>
@@ -1563,7 +1568,9 @@
 				<div class="grid grid--2">
 					<article class="card" data-reveal>
 						<h3>Where are your clients based?</h3>
-						<p>I'm in Jaipur, Rajasthan, and every project runs remotely — so whether you're in Delhi,
+						<p>I'm in Jaipur, Rajasthan — if you're a local business, here is
+							<a href="website-developer-jaipur/">how I work with businesses in Jaipur</a>. Every project
+							runs remotely, so whether you're in Delhi,
 							Mumbai, Bengaluru, Hyderabad, Pune, Chennai, Kolkata, Ahmedabad or a town nobody outside
 							it has heard of, the way we work is identical: email, WhatsApp and video calls, with
 							progress shared as I go. I take international projects on the same basis. I'm on IST
@@ -1758,7 +1765,12 @@
 					</div>
 
 					<div data-reveal data-reveal-delay="100">
-						<form class="contact-form" id="quote-form" data-email="keshavprashar597@gmail.com" data-endpoint="" data-access-key="">
+						<!-- With JavaScript the form posts to the hosted endpoint configured in js/main.js
+						     (FORM_ENDPOINT), or composes the email locally when none is set. Without
+						     JavaScript, the action below hands the enquiry to the visitor's mail app
+						     instead of reloading the page with their details in the URL. -->
+						<form class="contact-form" id="quote-form" data-email="keshavprashar597@gmail.com"
+							action="mailto:keshavprashar597@gmail.com?subject=Project%20enquiry" method="post" enctype="text/plain">
 							<!-- Honeypot: people never see or fill this; a hosted endpoint silently drops
 							     submissions where it has a value (Formspree: _gotcha, Web3Forms: botcheck). -->
 							<input type="text" name="_gotcha" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
@@ -1815,28 +1827,17 @@
 
 							<div class="form-row">
 								<div class="field">
-									<label for="f-timeline">Timeline</label>
-									<select id="f-timeline" name="timeline">
-										<option value="">Not sure yet</option>
-										<option>ASAP — within 2 weeks</option>
-										<option>2–4 weeks</option>
-										<option>1–2 months</option>
-										<option>Flexible</option>
+									<label for="f-contact">How should I reply?</label>
+									<select id="f-contact" name="contactMethod">
+										<option>Email</option>
+										<option>WhatsApp</option>
+										<option>Phone call</option>
 									</select>
 								</div>
 								<div class="field">
-									<label for="f-phone">Phone / WhatsApp <span class="opt">(optional)</span></label>
-									<input type="tel" id="f-phone" name="phone" placeholder="+91 98XXX XXXXX" autocomplete="tel">
+									<label for="f-phone">Phone / WhatsApp <span class="opt" id="f-phone-hint">(optional)</span></label>
+									<input type="tel" id="f-phone" name="phone" placeholder="+91 98XXX XXXXX" autocomplete="tel" aria-describedby="f-phone-hint">
 								</div>
-							</div>
-
-							<div class="field">
-								<label for="f-contact">How should I reply?</label>
-								<select id="f-contact" name="contactMethod">
-									<option>Email</option>
-									<option>WhatsApp</option>
-									<option>Phone call</option>
-								</select>
 							</div>
 
 							<div class="field">
@@ -1886,7 +1887,7 @@
 						<li><a href="https://www.linkedin.com/in/keshav-prashar-9277b2256" target="_blank" rel="noopener" aria-label="LinkedIn" data-cta="linkedin">
 							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.96 1.96 0 1 0 0 3.92 1.96 1.96 0 0 0 0-3.92zM21 13.9c0-3.4-1.82-4.98-4.24-4.98-1.96 0-2.83 1.08-3.32 1.83V8.5H10.1c.04.95 0 12.5 0 12.5h3.34v-6.98c0-.3.02-.6.11-.82.24-.6.79-1.22 1.72-1.22 1.21 0 1.7.92 1.7 2.28V21H21v-7.1z"/></svg>
 						</a></li>
-						<li><a href="https://www.instagram.com/keshav_prashar_00/" target="_blank" rel="noopener" aria-label="Instagram">
+						<li><a href="https://www.instagram.com/keshav_prashar_00/" target="_blank" rel="noopener" aria-label="Instagram" data-cta="instagram">
 							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
 						</a></li>
 					</ul>
@@ -1897,6 +1898,7 @@
 					<ul class="footer-links">
 						<li><a href="services/">Web development services</a></li>
 						<li><a href="ai-web-development/">AI web application development</a></li>
+						<li><a href="website-developer-jaipur/">Website developer in Jaipur</a></li>
 						<li><a href="#work">Featured Work</a></li>
 						<li><a href="#why">Why Work With Me</a></li>
 						<li><a href="#skills">Tech Stack</a></li>
@@ -1955,10 +1957,8 @@
 
 			<div class="pm-scroll">
 				<figure class="pm-stage">
-					<picture>
-						<source id="pm-stage-src" type="image/webp">
-						<img id="pm-stage-img" width="1600" height="1000" alt="" decoding="async">
-					</picture>
+					<!-- The <picture> for the current screen is created by js/main.js when a project
+					     opens, so the page never ships an image element without a src. -->
 					<button class="pm-arrow pm-arrow--prev" type="button" aria-label="Previous screen">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
 					</button>
