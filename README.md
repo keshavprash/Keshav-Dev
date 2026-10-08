@@ -243,8 +243,9 @@ All of its content is written with `textContent` / `createElement`, so nothing i
 The form has no backend until one is configured. On submit it builds a pre-filled `mailto:` message
 (name, email, phone, company, current website, project type, budget, preferred reply channel,
 details), opens the visitor's mail app, and shows a "Send it on WhatsApp instead" link carrying the
-same brief — the dependable route on a phone with no mail app. Without JavaScript the form's own
-`action="mailto:…"` does the same job instead of reloading the page with the details in the URL.
+same brief — the dependable route on a phone with no mail app. Without JavaScript the submit button is
+hidden and a note points to email and WhatsApp; `method="post"` keeps details out of the URL. (A
+`mailto:` form action was tried and dropped: Chrome flags it as a form posting to an insecure endpoint.)
 Choosing *WhatsApp* or *Phone call* as the reply method makes the phone number required.
 The WhatsApp button next to it sends the **same** brief — `readBrief()` and `briefLines()` in
 `js/main.js` are shared by both routes, so switching channel never loses what was typed. With an

@@ -142,7 +142,7 @@
 	<link rel="stylesheet" href="../css/style.css">
 
 	<!-- Every section is revealed by JS. If JS never runs, show the page rather than a blank one. -->
-	<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}</style></noscript>
+	<noscript><style>[data-reveal]{opacity:1!important;transform:none!important}#quote-form button[type="submit"]{display:none}</style></noscript>
 
 	<script>
 		// Restore the visitor's saved theme before first paint.
@@ -642,12 +642,13 @@
 					</div>
 
 					<div data-reveal data-reveal-delay="100">
-						<!-- With JavaScript the form posts to the hosted endpoint configured in js/main.js
-						     (FORM_ENDPOINT), or composes the email locally when none is set. Without
-						     JavaScript, the action below hands the enquiry to the visitor's mail app
-						     instead of reloading the page with their details in the URL. -->
-						<form class="contact-form" id="quote-form" data-email="keshavprashar597@gmail.com"
-							action="mailto:keshavprashar597@gmail.com?subject=Project%20enquiry" method="post" enctype="text/plain">
+						<!-- The form posts to the hosted endpoint configured in js/main.js (FORM_ENDPOINT),
+						     or composes the email locally when none is set. method="post" keeps the details
+						     out of the URL if JavaScript never runs; the <noscript> note below says what to do then. -->
+						<form class="contact-form" id="quote-form" data-email="keshavprashar597@gmail.com" method="post">
+							<noscript><p class="form-note">JavaScript is off, so this form cannot send. Email
+								<a href="mailto:keshavprashar597@gmail.com">keshavprashar597@gmail.com</a> or WhatsApp
+								<a href="https://wa.me/917633853037">+91 76338 53037</a> instead.</p></noscript>
 							<!-- Honeypot: people never see or fill this; a hosted endpoint silently drops
 							     submissions where it has a value (Formspree: _gotcha, Web3Forms: botcheck). -->
 							<input type="text" name="_gotcha" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
