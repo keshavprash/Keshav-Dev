@@ -6,15 +6,16 @@
 	'use strict';
 
 	/* -------------------------------------------------------------- Config */
-	// The only three values to set when the services exist. All empty = the site
-	// works exactly as before: the form composes an email locally, no analytics load.
+	// The only values to set. All empty = the form composes an email locally (plus a
+	// WhatsApp fallback) and no analytics script loads. Never invent these values.
 	//
-	// FORM_ENDPOINT    Web3Forms: 'https://api.web3forms.com/submit' (plus FORM_ACCESS_KEY,
-	//                  which Web3Forms designs to be public), or Formspree:
-	//                  'https://formspree.io/f/<your-form-id>'. Never put a secret here.
-	// GA4_ID           A GA4 measurement id ('G-XXXXXXXXXX') from your own property.
-	var FORM_ENDPOINT = '';
+	// FORM_ACCESS_KEY  NEEDS_REAL_VALUE — a Web3Forms access key (web3forms.com, free).
+	//                  Web3Forms designs this key to be public: it can only submit this
+	//                  form to your inbox. Paste it and the endpoint defaults to Web3Forms.
+	// FORM_ENDPOINT    Only for Formspree instead: 'https://formspree.io/f/<form-id>'.
+	// GA4_ID           NEEDS_REAL_VALUE — 'G-XXXXXXXXXX' from your own GA4 property.
 	var FORM_ACCESS_KEY = '';
+	var FORM_ENDPOINT = '';
 	var GA4_ID = '';
 
 	var doc = document;
@@ -256,7 +257,7 @@
 		// FORM_ENDPOINT (see Config) set to a form-to-email service makes enquiries
 		// post straight through, with a real thank-you state and a countable
 		// conversion. Left empty, the form composes the mail locally.
-		var endpoint = FORM_ENDPOINT.trim();
+		var endpoint = FORM_ENDPOINT.trim() || (FORM_ACCESS_KEY.trim() ? 'https://api.web3forms.com/submit' : '');
 		var ACCESS_KEY = FORM_ACCESS_KEY.trim();   // Web3Forms only
 		var WA_NUMBER = '917633853037';
 
@@ -318,7 +319,7 @@
 
 		// waBrief: when given, the message ends with a link that sends the same brief
 		// over WhatsApp — the dependable route on a phone with no mail app set up.
-		var say = function (msg, tone, waBrief) {
+		var say = function (msg, tone, waBrief, waLabel) {
 			if (!status) return;
 			status.textContent = msg;
 			if (waBrief) {
@@ -328,7 +329,7 @@
 				a.rel = 'noopener';
 				a.setAttribute('data-cta', 'whatsapp');
 				a.setAttribute('data-cta-location', 'form_fallback');
-				a.textContent = 'Send it on WhatsApp instead';
+				a.textContent = waLabel || 'Send it on WhatsApp instead';
 				status.appendChild(doc.createTextNode(' '));
 				status.appendChild(a);
 				status.appendChild(doc.createTextNode('.'));
@@ -393,8 +394,13 @@
 			var trapped = !!(honey && String(honey.value || '').trim());
 			var subject = 'Project enquiry' + (brief.type ? ' — ' + brief.type : '') + (brief.name ? ' (' + brief.name + ')' : '');
 
+			// A request that hangs must still end in the failure state, never in silence.
+			var controller = typeof AbortController === 'function' ? new AbortController() : null;
+			var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+
 			fetch(endpoint, {
 				method: 'POST',
+				signal: controller ? controller.signal : undefined,
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 				body: JSON.stringify({
 					access_key: ACCESS_KEY || undefined,          // Web3Forms; dropped by JSON.stringify when empty
@@ -417,15 +423,17 @@
 			}).then(function () {
 				form.reset();
 				syncPhoneRequired();
-				say('Thanks — your enquiry is with me. I reply with a plan and an estimate, usually within 24 hours. If it is urgent, WhatsApp is faster.', 'ok');
+				say('Thanks — your project enquiry has been sent. I reply with a plan and an estimate, usually within 24 hours.', 'ok');
 				track('form_submit_success', { project_type: brief.type || 'unspecified', page: location.pathname });
 				track('generate_lead', { method: 'form', project_type: brief.type || 'unspecified', budget: brief.budget || 'unspecified' });
 			}).catch(function () {
-				// Never lose an enquiry to a failed request: hand it to the mail client.
-				say('That did not send — opening your email app with the details instead, so nothing is lost.', 'error');
-				setTimeout(function () { mailtoFallback(brief); }, 900);
+				// Never lose an enquiry to a failed request: the form keeps what was typed,
+				// and the WhatsApp link carries the same brief in one tap.
+				say('Something went wrong. Please contact me on WhatsApp:', 'error', brief, 'send your details on WhatsApp');
+				status.appendChild(doc.createTextNode(' Or email ' + EMAIL + '.'));
 				track('form_submit_error', { project_type: brief.type || 'unspecified', page: location.pathname });
 			}).then(function () {
+				if (timer) clearTimeout(timer);
 				if (submitBtn) submitBtn.disabled = false;
 			});
 		});

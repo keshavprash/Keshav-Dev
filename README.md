@@ -3,7 +3,9 @@
 Professional freelance developer portfolio for **Keshav Prashar** — React.js & MERN Stack
 Developer (Jaipur, India).
 
-**Live website:** https://keshavprash.github.io/Keshav-Dev/
+**Live website:** https://keshavprash.github.io/Keshav-Dev/ — freelance website and web application
+development for businesses in Jaipur, across India and remotely worldwide. [Get a free quote](https://keshavprash.github.io/Keshav-Dev/#quote-form)
+or [message on WhatsApp](https://wa.me/917633853037).
 
 Built as a hand-written static site — no frameworks, no build step, no dependencies to install.
 
@@ -256,13 +258,19 @@ having a mail client set up):
 
 1. Sign up at [Web3Forms](https://web3forms.com) or [Formspree](https://formspree.io).
 2. In the **Config** block at the top of `js/main.js` (one place, used by every page with the form):
-   - **Web3Forms:** `FORM_ENDPOINT = 'https://api.web3forms.com/submit'` and paste the access key into
-     `FORM_ACCESS_KEY` (it is sent as `access_key`; a Web3Forms key only lets people submit this
-     form, which is why Web3Forms designs it to live in public code).
-   - **Formspree:** `FORM_ENDPOINT = 'https://formspree.io/f/XXXXXXXX'` and leave `FORM_ACCESS_KEY` empty.
-3. That is all — `js/main.js` then posts JSON to the endpoint, shows a thank-you state, swaps the
-   note under the buttons, fires `form_submit_success` + `generate_lead` (`method: form`), and falls
-   back to the `mailto:` route (firing `form_submit_error`) if the request fails.
+   - **Web3Forms (recommended):** paste the access key into `FORM_ACCESS_KEY`. That alone switches the
+     form to `https://api.web3forms.com/submit`. The key is designed by Web3Forms to be public: it can
+     only deliver this form to the inbox it was created for.
+   - **Formspree:** set `FORM_ENDPOINT = 'https://formspree.io/f/XXXXXXXX'` and leave the key empty.
+3. Commit and push. The form then posts JSON to the service and shows:
+   - success — *"Thanks — your project enquiry has been sent."* (fires `form_submit_success` + `generate_lead`)
+   - failure, an HTTP error or no answer within 15 s — *"Something went wrong. Please contact me on
+     WhatsApp"* with a one-tap WhatsApp link carrying the visitor's brief; what they typed stays in
+     the form (fires `form_submit_error`).
+4. Send one real test enquiry from your phone and confirm it reaches your inbox.
+
+Until a key is set, every value is empty (`NEEDS_REAL_VALUE` in the comments) and the form keeps the
+local `mailto:` + WhatsApp route. Never commit a made-up key.
 
 The form also carries a hidden `_gotcha` honeypot: people never see it, and a submission where it
 has a value is sent with `_gotcha` (Formspree) and `botcheck: true` (Web3Forms) so the service
