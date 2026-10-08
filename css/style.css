@@ -514,7 +514,7 @@ html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
 
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
 .hero-sub { margin: -16px 0 26px; font-size: .92rem; color: var(--text-muted); }
-.hero-sub a, .hero-meta a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.hero-sub a, .hero-meta a, .page-meta a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
 .hero-meta {
 	display: flex;
